@@ -1,488 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andy & Ximena — Registry</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andy & Ximena — Registry</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --butter: #FFF3C1;
+    --butter2: #FFF3C1;
+    --green: #2D7439;
+    --green-lt: #3d7a39;
+    --gold: #B8860B;
+    --gold-lt: #D4A017;
+    --text: #2D7439;
+    --muted: #6b8f68;
+    --white: #ffffff;
+  }
 
-  <style>
-    :root {
-      --butter: #FFF3C1;
-      --butter2: #FFF3C1;
-      --green: #2D7439;
-      --green-lt: #3E8A4C;
-      --gold: #C79A1B;
-      --gold-lt: #D9B24C;
-      --text: #2D7439;
-      --muted: #6E9A74;
-      --white: #FFFFFF;
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  body {
+    background: var(--butter);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+  }
 
-    body {
-      background: var(--butter);
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-    }
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 52px 20px 36px;
+    background: var(--butter);
+    position: relative;
+  }
 
-    .header {
-      text-align: center;
-      padding: 52px 20px 36px;
-      background: var(--butter);
-      position: relative;
-    }
+  .header::after {
+    content: '';
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto;
+    opacity: 0.6;
+  }
 
-    .header::after {
-      content: '';
-      display: block;
-      width: 120px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto;
-      opacity: 0.6;
-    }
+  .monogram {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.2rem;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
 
-    .monogram {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.4rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-      text-transform: none;
-    }
+  .header-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
 
-    .header-date {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
+  .header-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
 
-    .header-sub {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
+  .header-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green);
+    max-width: 480px;
+    margin: 0 auto 0;
+    line-height: 1.7;
+  }
 
-    .header-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--green);
-      max-width: 480px;
-      margin: 0 auto 0;
-      line-height: 1.7;
-      text-transform: none;
-      letter-spacing: 0;
-    }
+  /* Divider ornament */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.5em;
+    padding: 18px 0 12px;
+    opacity: 0.7;
+  }
 
-    .ornament {
-      text-align: center;
-      color: var(--gold);
-      font-size: 1rem;
-      letter-spacing: 0.5em;
-      padding: 18px 0 12px;
-      opacity: 0.7;
-    }
+  /* Note bar */
+  .note-bar {
+    background: var(--butter2);
+    border-top: 1px solid rgba(184,134,11,0.25);
+    border-bottom: 1px solid rgba(184,134,11,0.25);
+    text-align: center;
+    padding: 14px 20px;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    line-height: 1.8;
+  }
 
-    .note-bar {
-      background: var(--butter2);
-      border-top: 1px solid rgba(199, 154, 27, 0.25);
-      border-bottom: 1px solid rgba(199, 154, 27, 0.25);
-      text-align: center;
-      padding: 14px 20px;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green);
-      line-height: 1.8;
-    }
+  .note-bar a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,134,11,0.4);
+  }
 
-    .note-bar a {
-      color: var(--gold);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(199, 154, 27, 0.4);
-    }
+  /* Controls */
+  .controls {
+    padding: 24px 20px 8px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
 
-    .controls {
-      padding: 24px 20px 8px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+  .search-wrap {
+    position: relative;
+    margin-bottom: 14px;
+  }
 
-    .search-wrap {
-      position: relative;
-      margin-bottom: 14px;
-    }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 38px;
+    border: 1px solid rgba(42,90,39,0.3);
+    background: rgba(255,255,255,0.6);
+    border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    outline: none;
+  }
 
-    .search-wrap input {
-      width: 100%;
-      padding: 10px 16px 10px 38px;
-      border: 1px solid rgba(45, 116, 57, 0.3);
-      background: rgba(255, 255, 255, 0.55);
-      border-radius: 2px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--green);
-      outline: none;
-      text-transform: uppercase;
-    }
+  .search-wrap input::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+  }
 
-    .search-wrap input::placeholder {
-      color: var(--muted);
-      opacity: 0.7;
-    }
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
 
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
+  .filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
 
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+  .filter-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-right: 4px;
+  }
 
-    .filter-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-right: 4px;
-    }
+  .pill {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid rgba(42,90,39,0.35);
+    background: transparent;
+    color: var(--green);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all 0.2s;
+  }
 
-    .pill {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border: 1px solid rgba(45, 116, 57, 0.35);
-      background: transparent;
-      color: var(--green);
-      cursor: pointer;
-      border-radius: 1px;
-      transition: all 0.2s;
-    }
+  .pill:hover { background: rgba(42,90,39,0.08); }
+  .pill.active { background: var(--green); color: var(--butter); border-color: var(--green); }
 
-    .pill:hover {
-      background: rgba(45, 116, 57, 0.08);
-    }
+  .store-pill { border-color: rgba(184,134,11,0.4); color: var(--gold); }
+  .store-pill:hover { background: rgba(184,134,11,0.08); }
+  .store-pill.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
-    .pill.active {
-      background: var(--green);
-      color: var(--butter);
-      border-color: var(--green);
-    }
+  /* Results count */
+  .results-count {
+    text-align: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 0 4px;
+  }
 
-    .store-pill {
-      border-color: rgba(199, 154, 27, 0.5);
-      color: var(--gold);
-    }
+  /* Category section */
+  .category-section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px 8px;
+  }
 
-    .store-pill:hover {
-      background: rgba(199, 154, 27, 0.08);
-    }
+  .category-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 28px 0 14px;
+  }
 
-    .store-pill.active {
-      background: var(--gold);
-      color: var(--white);
-      border-color: var(--gold);
-    }
+  .category-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
 
-    .results-count {
-      text-align: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 10px 0 4px;
-    }
+  .category-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(184,134,11,0.3);
+  }
 
-    .category-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 16px 8px;
-    }
+  /* Item grid */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
 
-    .category-heading {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 28px 0 14px;
-    }
+  /* Item card */
+  .item-card {
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(184,134,11,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .category-heading h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: var(--gold);
-      white-space: nowrap;
-      line-height: 1;
-      text-transform: none;
-      letter-spacing: 0.01em;
-    }
+  .item-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(42,90,39,0.1);
+  }
 
-    .category-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(199, 154, 27, 0.3);
-    }
+  .item-card.purchased {
+    opacity: 0.52;
+    pointer-events: none;
+  }
 
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
+  .item-img-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f8f4e8;
+    position: relative;
+  }
 
-    .item-card {
-      background: rgba(255, 255, 255, 0.5);
-      border: 1px solid rgba(199, 154, 27, 0.25);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
+  .item-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s;
+  }
 
-    .item-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(45, 116, 57, 0.1);
-    }
+  .item-card:hover .item-img-wrap img {
+    transform: scale(1.04);
+  }
 
-    .item-card.purchased {
-      opacity: 0.52;
-      pointer-events: none;
-    }
+  .purchased-badge {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
 
-    .item-img-wrap {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #f8f4e8;
-      position: relative;
-    }
+  .item-body {
+    padding: 12px 12px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .item-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s;
-    }
+  .item-store {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
 
-    .item-card:hover .item-img-wrap img {
-      transform: scale(1.04);
-    }
+  .item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--green);
+    line-height: 1.35;
+    flex: 1;
+    margin-bottom: 8px;
+  }
 
-    .purchased-badge {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255,255,255,0.65);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+  .item-price {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--green);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
 
-    .item-body {
-      padding: 12px 12px 10px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+  .item-qty {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
 
-    .item-store {
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
+  .btn-buy {
+    display: block;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(42,90,39,0.5);
+    padding: 7px 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+    border-radius: 1px;
+  }
 
-    .item-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.98rem;
-      color: var(--green);
-      line-height: 1.35;
-      flex: 1;
-      margin-bottom: 8px;
-      text-transform: none;
-      letter-spacing: 0;
-    }
+  .btn-buy:hover {
+    background: var(--green);
+    color: var(--butter);
+    border-color: var(--green);
+  }
 
-    .item-price {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--green);
-      margin-bottom: 10px;
-      font-weight: 500;
-    }
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 20px 50px;
+    margin-top: 20px;
+    border-top: 1px solid rgba(184,134,11,0.2);
+  }
 
-    .item-qty {
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
+  .footer-monogram {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--gold);
+    opacity: 0.7;
+  }
 
-    .btn-buy {
-      display: block;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      border: 1px solid rgba(45, 116, 57, 0.5);
-      padding: 7px 10px;
-      text-decoration: none;
-      transition: all 0.2s;
-      border-radius: 1px;
-    }
+  .footer-date {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
 
-    .btn-buy:hover {
-      background: var(--green);
-      color: var(--butter);
-      border-color: var(--green);
-    }
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 48px 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
 
-    .footer {
-      text-align: center;
-      padding: 40px 20px 50px;
-      margin-top: 20px;
-      border-top: 1px solid rgba(199, 154, 27, 0.2);
-    }
-
-    .footer-monogram {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      opacity: 0.7;
-      text-transform: none;
-    }
-
-    .footer-date {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 48px 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 1.1rem;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-
-    @media (max-width: 480px) {
-      .monogram {
-        font-size: 2.6rem;
-      }
-
-      .items-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .category-heading h2 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+  @media (max-width: 480px) {
+    .monogram { font-size: 2.4rem; }
+    .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .category-heading h2 { font-size: 1.6rem; }
+  }
+</style>
 </head>
+
 <body>
 
-  <div class="header">
-    <div class="monogram">Andy &amp; Ximena</div>
-    <div class="header-date">August 29, 2026 · St. Patrick's Cathedral · New York City</div>
-    <div class="header-sub">Wedding Registry</div>
-    <p class="header-intro">Your love and support means the world to us and is truly the greatest gift of all.</p>
+<div class="header">
+  <div class="monogram">Andy & Ximena</div>
+  <div class="header-date">August 29, 2026 · St. Patrick's Cathedral · New York City</div>
+  <div class="header-sub">Wedding Registry</div>
+  <p class="header-intro">Your love and support means the world to us and is truly the greatest gift of all.</p>
+</div>
+
+<div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+<div class="note-bar">
+  To purchase, click any item and you will be taken directly to the store's registry page.
+  Items are available at <strong>Crate &amp; Barrel</strong>, <strong>Scully &amp; Scully</strong>, <strong>Bloomingdale's</strong> &amp; <strong>Williams Sonoma</strong>.
+</div>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search items...">
   </div>
 
-  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-
-  <div class="note-bar">
-    To purchase, click any item and you will be taken directly to the store's registry page.
-    Items are available at <strong>Crate &amp; Barrel</strong>, <strong>Scully &amp; Scully</strong>, <strong>Bloomingdale's</strong> &amp; <strong>Williams Sonoma</strong>.
+  <div class="filter-row">
+    <span class="filter-label">Store</span>
+    <button class="pill store-pill active" onclick="filterStore(this,'all')">All Stores</button>
+    <button class="pill store-pill" onclick="filterStore(this,'Crate & Barrel')">Crate &amp; Barrel</button>
+    <button class="pill store-pill" onclick="filterStore(this,'Scully & Scully')">Scully &amp; Scully</button>
+    <button class="pill store-pill" onclick="filterStore(this,'Bloomingdales')">Bloomingdale's</button>
+    <button class="pill store-pill" onclick="filterStore(this,'Williams Sonoma')">Williams Sonoma</button>
   </div>
 
-  <div class="controls">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="Search items..." />
-    </div>
-
-    <div class="filter-row">
-      <span class="filter-label">Store</span>
-      <button class="pill store-pill active" onclick="filterStore(this,'all')">All Stores</button>
-      <button class="pill store-pill" onclick="filterStore(this,'Crate & Barrel')">Crate &amp; Barrel</button>
-      <button class="pill store-pill" onclick="filterStore(this,'Scully & Scully')">Scully &amp; Scully</button>
-      <button class="pill store-pill" onclick="filterStore(this,'Bloomingdales')">Bloomingdale's</button>
-      <button class="pill store-pill" onclick="filterStore(this,'Williams Sonoma')">Williams Sonoma</button>
-    </div>
-
-    <div class="filter-row purchased-row" style="margin-top:8px">
-      <span class="filter-label">Show</span>
-      <button class="pill active" onclick="filterPurchased(this,'all')">All Items</button>
-      <button class="pill" onclick="filterPurchased(this,'available')">Still Needed</button>
-      <button class="pill" onclick="filterPurchased(this,'purchased')">Purchased</button>
-    </div>
+  <div class="filter-row purchased-row" style="margin-top:8px">
+    <span class="filter-label">Show</span>
+    <button class="pill active" onclick="filterPurchased(this,'all')">All Items</button>
+    <button class="pill" onclick="filterPurchased(this,'available')">Still Needed</button>
+    <button class="pill" onclick="filterPurchased(this,'purchased')">Purchased</button>
   </div>
+</div>
 
-  <div class="results-count" id="resultsCount"></div>
-  <div id="registryContent"></div>
+<div class="results-count" id="resultsCount"></div>
+<div id="registryContent"></div>
 
-  <div class="footer">
-    <div class="footer-monogram">X &amp; A</div>
-    <div class="footer-date">08.29.2026</div>
-  </div>
+<div class="footer">
+  <div class="footer-monogram">X &amp; A</div>
+  <div class="footer-date">08.29.2026</div>
+</div>
 
-  <script>
-    const items = [
-      {name:"Mercer Arctic Blue Recycled Stoneware Cereal Bowl",store:"Crate & Barrel",cat:"Dinnerware",price:8.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/mercer-arctic-blue-recycled-stoneware-cereal-bowl/s606325",img:"https://cb.scene7.com/is/image/Crate/MercerArBlRcyStnCerealSSF25/$web_gr_list_desktop$/260326111342/MercerArBlRcyStnCerealSSF25.jpg"},
-      {name:"KitchenAid Artisan Series 5-Quart Stand Mixer",store:"Crate & Barrel",cat:"Electrics",price:399.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer/s663278",img:"https://cb.scene7.com/is/image/Crate/KitchenAidArt5qtMxrRedSSS22_VND/$web_gr_list_desktop$/240201123517/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer.jpg"},
-      {name:"Range 12-oz. Mug by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:11.96,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-mug-by-leanne-ford/s400553",img:"https://cb.scene7.com/is/image/Crate/RangeMugSSS22/$web_gr_list_desktop$/240201121126/range-mug.jpg"},
-      {name:"Range Dinner Plate by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:13.56,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-dinner-plate-by-leanne-ford/s632742",img:"https://cb.scene7.com/is/image/Crate/RangeDinnerPlateSSF20/$web_gr_list_desktop$/240201094509/range-dinner-plate.jpg"},
-      {name:"Marin White Stoneware Gravy Boat",store:"Crate & Barrel",cat:"Dinnerware",price:24.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/marin-white-stoneware-gravy-boat/s308609",img:"https://cb.scene7.com/is/image/Crate/MarinWhtGravyBoatSSS20/$web_gr_list_desktop$/240201083013/marin-white-gravy-boat.jpg"},
-      {name:"Le Creuset Heritage White Ceramic Butter Dish",store:"Crate & Barrel",cat:"Dinnerware",price:35.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/le-creuset-heritage-stoneware-butter-dish/s680424",img:"https://cb.scene7.com/is/image/Crate/LeCrsetHrtgWhtButterDshSSS22_VND/$web_gr_list_desktop$/240201123528/le-creuset-heritage-stoneware-butter-dish.jpg"},
-      {name:"Tulip Ice Cream Dish",store:"Crate & Barrel",cat:"Serving",price:4.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/tulip-ice-cream-dish/s507520",img:"https://cb.scene7.com/is/image/Crate/TulipIceCreamDishSSS25/$web_gr_list_desktop$/260326111342/TulipIceCreamDishSSS25.jpg"},
-      {name:"Caesna Mirror Serving Tongs",store:"Crate & Barrel",cat:"Flatware",price:25.00,qty:1,purchased:false,url:"https://www.crateandbarrel.com/caesna-mirror-serving-tongs/s452488",img:"https://cb.scene7.com/is/image/Crate/CaesnaMirrorServeTongsSSS26/$web_gr_list_desktop$/260326111349/CaesnaMirrorServeTongsSSS26.jpg"},
-      {name:"Caesna Texture 5-Piece Flatware Place Setting",store:"Crate & Barrel",cat:"Flatware",price:50.00,qty:12,purchased:false,url:"https://www.crateandbarrel.com/caesna-texture-5-piece-flatware-place-setting/s547572",img:"https://cb.scene7.com/is/image/Crate/CaesnaTxt5pFltwrPlcstngSSS24/$web_gr_list_desktop$/240201151144/caesna-texture-flatware-place-setting.jpg"},
-      {name:"Alma 13-oz. Acrylic Highball Glass",store:"Crate & Barrel",cat:"Drinkware",price:7.96,qty:1,purchased:false,url:"https://www.crateandbarrel.com/alma-13-oz-acrylic-highball-glass/s320819",img:"https://cb.scene7.com/is/image/Crate/AlmaClearAcrylicHighballSSS25/$web_gr_list_desktop$/260326111636/AlmaClearAcrylicHighballSSS25.jpg"},
-      {name:"Edge 13-Oz. Tall Glass",store:"Crate & Barrel",cat:"Drinkware",price:9.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/edge-13-oz-tall-glass/s322922",img:"https://cb.scene7.com/is/image/Crate/EdgeTallGlass13ozSSF21/$web_gr_list_desktop$/240201112911/edge-tall-glass-13oz.jpg"},
-      {name:"Impressions 17-oz. Cooler Glasses, Set of 12",store
+<script>
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+const items = [
+  /* KEEP YOUR FULL ITEMS ARRAY HERE EXACTLY AS YOU PASTED IT */
+];
+
+let activeStore = 'all';
+let activePurchased = 'all';
+let searchQuery = '';
+
+function filterStore(btn, store) {
+  document.querySelectorAll('.store-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeStore = store;
+  render();
+}
+
+function filterPurchased(btn, state) {
+  document.querySelectorAll('.purchased-row .pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activePurchased = state;
+  render();
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value.toLowerCase();
+  render();
+});
+
+function getStoreLabel(store) {
+  const map = {
+    "Crate & Barrel": "Crate & Barrel",
+    "Scully & Scully": "Scully & Scully",
+    "Bloomingdales": "Bloomingdale's",
+    "Williams Sonoma": "Williams Sonoma"
+  };
+  return map[store] || store;
+}
+
+function render() {
+  const filtered = items.filter(item => {
+    const matchStore = activeStore === 'all' || item.store === activeStore;
+    const matchPurchased =
+      activePurchased === 'all' ||
+      (activePurchased === 'available' && !item.purchased) ||
+      (activePurchased === 'purchased' && item.purchased);
+
+    const matchSearch =
+      !searchQuery ||
+      item.name.toLowerCase().includes(searchQuery) ||
+      item.cat.toLowerCase().includes(searchQuery) ||
+      item.store.toLowerCase().includes(searchQuery);
+
+    return matchStore && matchPurchased && matchSearch;
+  });
+
+  document.getElementById('resultsCount').textContent =
+    `${filtered.length} item${filtered.length !== 1 ? 's' : ''}`;
+
+  const cats = [...new Set(filtered.map(i => i.cat))].sort();
+  const content = document.getElementById('registryContent');
+
+  if (filtered.length === 0) {
+    content.innerHTML = '<div class="no-results">No items found — try adjusting your filters.</div>';
+    return;
+  }
+
+  content.innerHTML = cats.map(cat => {
+    const catItems = filtered.filter(i => i.cat === cat);
+
+    const cards = catItems.map(item => {
+      const safeName = escapeHtml(item.name);
+      const safeStore = escapeHtml(getStoreLabel(item.store));
+      const safeImg = escapeHtml(item.img);
+      const safeUrl = escapeHtml(item.url);
+
+      return `
+        <div class="item-card ${item.purchased ? 'purchased' : ''}">
+          <div class="item-img-wrap">
+            <img
+              src="${safeImg}"
+              alt="${safeName}"
+              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23f8f4e8%22 width=%22200%22 height=%22200%22/><text fill=%22%23aaa%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22>No image</text></svg>'"
+            >
+            ${item.purchased ? '<div class="purchased-badge">Purchased</div>' : ''}
+          </div>
+          <div class="item-body">
+            <div class="item-store">${safeStore}</div>
+            <div class="item-name">${safeName}</div>
+            <div class="item-price">$${Number(item.price).toFixed(2)}</div>
+            <div class="item-qty">Qty requested: ${item.qty}</div>
+            <a class="btn-buy" href="${safeUrl}" target="_blank" rel="noopener">Purchase →</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    return `
+      <div class="category-section">
+        <div class="category-heading"><h2>${escapeHtml(cat)}</h2></div>
+        <div class="items-grid">${cards}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+render();
+</script>
+
+</body>
+</html>
