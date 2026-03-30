@@ -1,1329 +1,684 @@
-Add this version. It keeps your existing filters, adds sorting, and keeps price visually subtle.
-
-Replace your current file with this structure, and paste your full items array where noted.
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andy & Ximena — Registry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andy & Ximena — Wedding Registry</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --butter:  #FEFBE6;
+    --butter2: #FBF5C8;
+    --green:   #2A5A27;
+    --green2:  #3a7a36;
+    --gold:    #B8860B;
+    --gold2:   #D4A017;
+    --muted:   #7a9977;
+    --white:   #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
-  <style>
-    :root {
-      --butter: #FFF3C1;
-      --butter2: #FFF3C1;
-      --green: #2D7439;
-      --green-lt: #3d7a39;
-      --gold: #B8860B;
-      --gold-lt: #D4A017;
-      --text: #2D7439;
-      --muted: #6b8f68;
-      --white: #ffffff;
-    }
+  body {
+    background: var(--butter);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--green);
+    -webkit-font-smoothing: antialiased;
+  }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ─── HEADER ─────────────────────────────────────────────────── */
+  .site-header {
+    text-align: center;
+    padding: 56px 24px 40px;
+    background: var(--butter);
+    position: relative;
+  }
+  .site-header::before,
+  .site-header::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto;
+    opacity: .55;
+  }
+  .site-header::before { margin-bottom: 28px; }
+  .site-header::after  { margin-top: 28px; }
 
-    body {
-      background: var(--butter);
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-    }
+  .couple-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.8rem, 7vw, 4.2rem);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: .02em;
+    margin-bottom: 10px;
+  }
+  .header-detail {
+    font-size: .6rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--green);
+    line-height: 2;
+  }
+  .header-sub {
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+    margin-bottom: 18px;
+  }
+  .header-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--green);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
 
-    .header {
-      text-align: center;
-      padding: 52px 20px 36px;
-      background: var(--butter);
-      position: relative;
-    }
+  /* ─── BANNER ─────────────────────────────────────────────────── */
+  .how-to-buy {
+    background: var(--butter2);
+    border-top: 1px solid rgba(184,134,11,.25);
+    border-bottom: 1px solid rgba(184,134,11,.25);
+    text-align: center;
+    padding: 14px 24px;
+    font-size: .58rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--green);
+    line-height: 1.9;
+  }
+  .how-to-buy strong { color: var(--gold); font-weight: 600; }
 
-    .header::after {
-      content: '';
-      display: block;
-      width: 120px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto;
-      opacity: 0.6;
-    }
+  .tab {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border: 1px solid rgba(184,134,11,.45);
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all .2s;
+  }
+  .tab:hover  { background: rgba(184,134,11,.08); }
+  .tab.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
-    .monogram {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-    }
+  /* ─── SEARCH ──────────────────────────────────────────────────── */
+  .search-wrap {
+    max-width: 420px;
+    margin: 18px auto 0;
+    padding: 0 20px;
+    position: relative;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 36px;
+    background: rgba(255,255,255,.6);
+    border: 1px solid rgba(42,90,39,.28);
+    border-radius: 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    color: var(--green);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .search-wrap input:focus { border-color: var(--gold); }
+  .search-wrap input::placeholder { color: var(--muted); opacity: .7; }
+  .search-icon {
+    position: absolute;
+    left: 32px; top: 50%;
+    transform: translateY(-50%);
+    font-size: .8rem;
+    color: var(--muted);
+    pointer-events: none;
+  }
 
-    .header-date {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
+  /* ─── COUNT ───────────────────────────────────────────────────── */
+  .item-count {
+    text-align: center;
+    font-size: .55rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 0 4px;
+  }
 
-    .header-sub {
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
+  /* ─── CATEGORY SECTIONS ───────────────────────────────────────── */
+  .registry-body { max-width: 980px; margin: 0 auto; padding: 0 18px 60px; }
 
-    .header-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--green);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
+  .cat-section { margin-top: 36px; }
 
-    .ornament {
-      text-align: center;
-      color: var(--gold);
-      font-size: 1rem;
-      letter-spacing: 0.5em;
-      padding: 18px 0 12px;
-      opacity: 0.7;
-    }
+  .cat-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .cat-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.1rem;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .cat-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(184,134,11,.35), transparent);
+  }
 
-    .note-bar {
-      background: var(--butter2);
-      border-top: 1px solid rgba(184,134,11,0.25);
-      border-bottom: 1px solid rgba(184,134,11,0.25);
-      text-align: center;
-      padding: 14px 20px;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green);
-      line-height: 1.8;
-    }
+  /* ─── GRID ────────────────────────────────────────────────────── */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+  }
 
-    .controls {
-      padding: 24px 20px 8px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
+  /* ─── CARD ────────────────────────────────────────────────────── */
+  .card {
+    background: rgba(255,255,255,.58);
+    border: 1px solid rgba(184,134,11,.2);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .22s, box-shadow .22s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(42,90,39,.1);
+  }
 
-    .search-wrap {
-      position: relative;
-      margin-bottom: 14px;
-    }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f5f0e0;
+    position: relative;
+  }
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .35s;
+  }
+  .card:hover .card-img img { transform: scale(1.05); }
 
-    .search-wrap input {
-      width: 100%;
-      padding: 10px 16px 10px 38px;
-      border: 1px solid rgba(42,90,39,0.3);
-      background: rgba(255,255,255,0.6);
-      border-radius: 2px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--green);
-      outline: none;
-    }
+  .card-img .store-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    font-size: .5rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: rgba(254,251,230,.92);
+    color: var(--gold);
+    border: 1px solid rgba(184,134,11,.4);
+    padding: 3px 7px;
+    border-radius: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
 
-    .search-wrap input::placeholder {
-      color: var(--muted);
-      opacity: 0.7;
-    }
+  .card-body {
+    padding: 12px 12px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .95rem;
+    color: var(--green);
+    line-height: 1.35;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+  .card-price {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .card-qty {
+    font-size: .55rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .btn-buy {
+    display: block;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .56rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(42,90,39,.45);
+    padding: 8px 10px;
+    text-decoration: none;
+    transition: all .2s;
+    border-radius: 1px;
+  }
+  .btn-buy:hover {
+    background: var(--green);
+    color: var(--butter);
+    border-color: var(--green);
+  }
 
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
+  /* ─── NO RESULTS ──────────────────────────────────────────────── */
+  .no-results {
+    text-align: center;
+    padding: 60px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
 
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      margin-bottom: 8px;
-    }
+  /* ─── FOOTER ──────────────────────────────────────────────────── */
+  .site-footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    border-top: 1px solid rgba(184,134,11,.2);
+  }
+  .footer-mono {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: var(--gold);
+    opacity: .75;
+  }
+  .footer-date {
+    font-size: .52rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
 
-    .filter-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-right: 4px;
-    }
+  /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+  /* Placeholder for missing images */
+  .card-img.img-missing {
+    background: #f5f0e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-img.img-missing::after {
+    content: '✦';
+    font-size: 1.8rem;
+    color: rgba(184,134,11,.25);
+  }
 
-    .pill {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border: 1px solid rgba(42,90,39,0.35);
-      background: transparent;
-      color: var(--green);
-      cursor: pointer;
-      border-radius: 1px;
-      transition: all 0.2s;
-    }
+  @media (max-width: 520px) {
+    .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cat-heading h2 { font-size: 1.7rem; }
+    .couple-name { font-size: 2.6rem; }
+  }
 
-    .pill:hover { background: rgba(42,90,39,0.08); }
-    .pill.active { background: var(--green); color: var(--butter); border-color: var(--green); }
+  /* ─── FILTER SECTIONS ─────────────────────────────────────────── */
+  .filter-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 16px 20px 0;
+  }
+  .filter-label {
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .cat-tab {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .56rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid rgba(42,90,39,.3);
+    background: transparent;
+    color: var(--green);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all .2s;
+  }
+  .cat-tab:hover  { background: rgba(42,90,39,.08); }
+  .cat-tab.active { background: var(--green); color: var(--butter); border-color: var(--green); }
 
-    .store-pill { border-color: rgba(184,134,11,0.4); color: var(--gold); }
-    .store-pill:hover { background: rgba(184,134,11,0.08); }
-    .store-pill.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
+  /* ─── SORT + SEARCH ROW ───────────────────────────────────────── */
+  .sort-search-row {
+    max-width: 980px;
+    margin: 16px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .search-wrap { flex: 1; min-width: 200px; position: relative; }
+  .sort-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .sort-wrap select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .65rem;
+    letter-spacing: .08em;
+    padding: 10px 14px;
+    border: 1px solid rgba(42,90,39,.28);
+    background: rgba(255,255,255,.6);
+    color: var(--green);
+    border-radius: 1px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color .2s;
+    min-width: 180px;
+  }
+  .sort-wrap select:focus { border-color: var(--gold); }
 
-    .sort-select {
-      border: 1px solid rgba(42,90,39,0.35);
-      background: rgba(255,255,255,0.6);
-      color: var(--green);
-      padding: 6px 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      outline: none;
-    }
-
-    .results-count {
-      text-align: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 10px 0 4px;
-    }
-
-    .category-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 16px 8px;
-    }
-
-    .category-heading {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 28px 0 14px;
-    }
-
-    .category-heading h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: var(--gold);
-      white-space: nowrap;
-      line-height: 1;
-    }
-
-    .category-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(184,134,11,0.3);
-    }
-
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .item-card {
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(184,134,11,0.2);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .item-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(42,90,39,0.1);
-    }
-
-    .item-card.purchased {
-      opacity: 0.52;
-      pointer-events: none;
-    }
-
-    .item-img-wrap {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #f8f4e8;
-      position: relative;
-    }
-
-    .item-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s;
-    }
-
-    .item-card:hover .item-img-wrap img { transform: scale(1.04); }
-
-    .purchased-badge {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.65);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .item-body {
-      padding: 12px 12px 10px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .item-store {
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .item-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      color: var(--green);
-      line-height: 1.35;
-      flex: 1;
-      margin-bottom: 8px;
-    }
-
-    .item-price {
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
-
-    .item-qty {
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .btn-buy {
-      display: block;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      border: 1px solid rgba(42,90,39,0.5);
-      padding: 7px 10px;
-      text-decoration: none;
-      transition: all 0.2s;
-      border-radius: 1px;
-    }
-
-    .btn-buy:hover {
-      background: var(--green);
-      color: var(--butter);
-      border-color: var(--green);
-    }
-
-    .footer {
-      text-align: center;
-      padding: 40px 20px 50px;
-      margin-top: 20px;
-      border-top: 1px solid rgba(184,134,11,0.2);
-    }
-
-    .footer-monogram {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      color: var(--gold);
-      opacity: 0.7;
-    }
-
-    .footer-date {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 48px 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 480px) {
-      .monogram { font-size: 2.4rem; }
-      .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .category-heading h2 { font-size: 1.6rem; }
-    }
-  </style>
+</style>
 </head>
 <body>
 
-<div class="header">
-  <div class="monogram">Andy & Ximena</div>
-  <div class="header-date">August 29, 2026 · St. Patrick's Cathedral · New York City</div>
-  <div class="header-sub">Wedding Registry</div>
-  <p class="header-intro">Your love and support means the world to us and is truly the greatest gift of all.</p>
+<!-- Header -->
+<header class="site-header">
+  <div class="couple-name">Andy &amp; Ximena</div>
+  <p class="header-detail">August 29, 2026 &nbsp;·&nbsp; St. Patrick's Cathedral &nbsp;·&nbsp; New York City</p>
+  <p class="header-sub">Wedding Registry</p>
+  <p class="header-note">Your love and support means the world to us<br>and is truly the greatest gift of all.</p>
+</header>
+
+<!-- How to buy banner -->
+<div class="how-to-buy">
+  Click any item to purchase directly through the store's registry &nbsp;·&nbsp;
+  Available at <strong>Crate &amp; Barrel</strong>, <strong>Scully &amp; Scully</strong>, <strong>Bloomingdale's</strong> &amp; <strong>Williams Sonoma</strong>
 </div>
 
-<div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-
-<div class="note-bar">
-  Items will open within each retailer’s site or registry.
+<!-- Store filter tabs -->
+<div class="filter-section">
+  <p class="filter-label">Store</p>
+  <div class="tabs-row" id="storeTabs">
+    <button class="tab active" onclick="setStore(this,'all')">All Stores</button>
+    <button class="tab" onclick="setStore(this,'Crate & Barrel')">Crate &amp; Barrel</button>
+    <button class="tab" onclick="setStore(this,'Scully & Scully')">Scully &amp; Scully</button>
+    <button class="tab" onclick="setStore(this,'Bloomingdales')">Bloomingdale's</button>
+    <button class="tab" onclick="setStore(this,'Williams Sonoma')">Williams Sonoma</button>
+  </div>
 </div>
 
-<div class="controls">
+<!-- Sort + Search row -->
+<!-- Category filter -->
+<div class="filter-section">
+  <p class="filter-label">Category</p>
+  <div class="tabs-row" id="catTabs"></div>
+</div>
+
+<div class="sort-search-row">
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search items...">
+    <input id="search" type="text" placeholder="Search items…">
   </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Store</span>
-    <button class="pill store-pill active" onclick="filterStore(this,'all')">All Stores</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Crate & Barrel')">Crate &amp; Barrel</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Scully & Scully')">Scully &amp; Scully</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Bloomingdales')">Bloomingdale's</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Williams Sonoma')">Williams Sonoma</button>
-  </div>
-
-  <div class="filter-row purchased-row">
-    <span class="filter-label">Show</span>
-    <button class="pill active" onclick="filterPurchased(this,'all')">All Items</button>
-    <button class="pill" onclick="filterPurchased(this,'available')">Still Needed</button>
-    <button class="pill" onclick="filterPurchased(this,'purchased')">Purchased</button>
-  </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Arrange</span>
-    <select id="sortSelect" class="sort-select">
-      <option value="default">Default</option>
-      <option value="low-high">Lowest to Highest</option>
-      <option value="high-low">Highest to Lowest</option>
-      <option value="az">A to Z</option>
+  <div class="sort-wrap">
+    <label class="filter-label" for="sortSel">Sort by</label>
+    <select id="sortSel" onchange="setSort(this.value)">
+      <option value="category">By Category</option>
+      <option value="recommended">Recommended</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
     </select>
   </div>
 </div>
 
-<div class="results-count" id="resultsCount"></div>
-<div id="registryContent"></div>
+<p class="item-count" id="count"></p>
 
-<div class="footer">
-  <div class="footer-monogram">X &amp; A</div>
-  <div class="footer-date">08.29.2026</div>
-</div>
+<!-- Registry content -->
+<div class="registry-body" id="registry"></div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-mono">X &amp; A</div>
+  <div class="footer-date">08 · 29 · 2026</div>
+</footer>
 
 <script>
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-const items = [
-  /* PASTE YOUR FULL EXISTING ITEMS ARRAY HERE */
+// ── Item data (name, store, category, price, qty, url, img) ──────────────────
+const ITEMS = [
+  ["Mercer Arctic Blue Recycled Stoneware Cereal Bowl","Crate & Barrel","Dinnerware",8.95,1,"https://www.crateandbarrel.com/mercer-arctic-blue-recycled-stoneware-cereal-bowl/s606325","https://cb.scene7.com/is/image/Crate/MercerArBlRcyStnCerealSSF25/$web_gr_list_desktop$/260326111342/MercerArBlRcyStnCerealSSF25.jpg",6],
+  ["KitchenAid Artisan Series 5-Quart Tilt-Head Stand Mixer","Crate & Barrel","Electrics",399.95,1,"https://www.crateandbarrel.com/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer/s663278","https://cb.scene7.com/is/image/Crate/KitchenAidArt5qtMxrRedSSS22_VND/$web_gr_list_desktop$/240201123517/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer.jpg",9],
+  ["Range 12-oz. Mug by Leanne Ford","Crate & Barrel","Dinnerware",11.96,8,"https://www.crateandbarrel.com/range-mug-by-leanne-ford/s400553","https://cb.scene7.com/is/image/Crate/RangeMugSSS22/$web_gr_list_desktop$/240201121126/range-mug.jpg",7],
+  ["Range Dinner Plate by Leanne Ford","Crate & Barrel","Dinnerware",13.56,8,"https://www.crateandbarrel.com/range-dinner-plate-by-leanne-ford/s632742","https://cb.scene7.com/is/image/Crate/RangeDinnerPlateSSF20/$web_gr_list_desktop$/240201094509/range-dinner-plate.jpg",6],
+  ["Marin White Stoneware Gravy Boat","Crate & Barrel","Dinnerware",24.95,1,"https://www.crateandbarrel.com/marin-white-stoneware-gravy-boat/s308609","https://cb.scene7.com/is/image/Crate/MarinWhtGravyBoatSSS20/$web_gr_list_desktop$/240201083013/marin-white-gravy-boat.jpg",8],
+  ["Le Creuset Heritage White Ceramic Butter Dish","Crate & Barrel","Dinnerware",35.95,1,"https://www.crateandbarrel.com/le-creuset-heritage-stoneware-butter-dish/s680424","https://cb.scene7.com/is/image/Crate/LeCrsetHrtgWhtButterDshSSS22_VND/$web_gr_list_desktop$/240201123528/le-creuset-heritage-stoneware-butter-dish.jpg",7],
+  ["Tulip Ice Cream Dish","Crate & Barrel","Serving",4.95,1,"https://www.crateandbarrel.com/tulip-ice-cream-dish/s507520","https://cb.scene7.com/is/image/Crate/TulipIceCreamDishSSS25/$web_gr_list_desktop$/260326111342/TulipIceCreamDishSSS25.jpg",5],
+  ["Caesna Mirror Serving Tongs","Crate & Barrel","Flatware",25.00,1,"https://www.crateandbarrel.com/caesna-mirror-serving-tongs/s452488","https://cb.scene7.com/is/image/Crate/CaesnaMirrorServeTongsSSS26/$web_gr_list_desktop$/260326111349/CaesnaMirrorServeTongsSSS26.jpg",7],
+  ["Caesna Texture 5-Piece Flatware Place Setting","Crate & Barrel","Flatware",50.00,12,"https://www.crateandbarrel.com/caesna-texture-5-piece-flatware-place-setting/s547572","https://cb.scene7.com/is/image/Crate/CaesnaTxt5pFltwrPlcstngSSS24/$web_gr_list_desktop$/240201151144/caesna-texture-flatware-place-setting.jpg",8],
+  ["Alma 13-oz. Acrylic Highball Glass","Crate & Barrel","Drinkware",7.96,1,"https://www.crateandbarrel.com/alma-13-oz-acrylic-highball-glass/s320819","https://cb.scene7.com/is/image/Crate/AlmaClearAcrylicHighballSSS25/$web_gr_list_desktop$/260326111636/AlmaClearAcrylicHighballSSS25.jpg",5],
+  ["Edge 13-Oz. Tall Glass","Crate & Barrel","Drinkware",9.95,1,"https://www.crateandbarrel.com/edge-13-oz-tall-glass/s322922","https://cb.scene7.com/is/image/Crate/EdgeTallGlass13ozSSF21/$web_gr_list_desktop$/240201112911/edge-tall-glass-13oz.jpg",5],
+  ["Impressions 17-oz. Cooler Glasses, Set of 12","Crate & Barrel","Drinkware",33.95,1,"https://www.crateandbarrel.com/impressions-17-oz-cooler-glasses-set-of-12/s643477","https://cb.scene7.com/is/image/Crate/ImpressionsCooler17ozS12SSS21/$web_gr_list_desktop$/240201113034/impressions-cooler-glasses-set-of-12.jpg",6],
+  ["Beau 1.75-Gallon Glass Drink Dispenser","Crate & Barrel","Drinkware",59.96,1,"https://www.crateandbarrel.com/beau-1-75-gallon-glass-drink-dispenser/s160801","https://cb.scene7.com/is/image/Crate/Beau1p75glDrnkDspnsrSSF25/$web_gr_list_desktop$/260326111342/Beau1p75glDrnkDspnsrSSF25.jpg",7],
+  ["Schott Zwiesel Tour 15-Oz. White Wine Glass","Crate & Barrel","Wine",13.56,1,"https://www.crateandbarrel.com/schott-zwiesel-tour-15-oz-white-wine-glass/s583459","https://cb.scene7.com/is/image/Crate/TourWhiteWine15ozSSS22/$web_gr_list_desktop$/240201123539/tour-white-wine-glass.jpg",7],
+  ["Schott Zwiesel Tour 18-Oz. Red Wine Glass","Crate & Barrel","Wine",13.56,1,"https://www.crateandbarrel.com/schott-zwiesel-tour-18-oz-red-wine-glass/s677446","https://cb.scene7.com/is/image/Crate/TourRedWine18ozSSS22/$web_gr_list_desktop$/240201123534/tour-red-wine-glass.jpg",7],
+  ["Marin Natural Linen Napkin","Crate & Barrel","Table Linens",14.95,1,"https://www.crateandbarrel.com/marin-natural-european-flax-certified-linen-napkin/s223272","https://cb.scene7.com/is/image/Crate/MarinLinenNpknWmNatSSF22/$web_gr_list_desktop$/240201131053/marin-warm-natural-linen-dinner-napkin.jpg",8],
+  ["All-Clad Large 16\"x13\" Stainless Steel Roasting Pan with Rack","Crate & Barrel","Cookware",149.95,1,"https://www.crateandbarrel.com/all-clad-large-16-x13-stainless-steel-roasting-pan-with-rack/s219608","https://cb.scene7.com/is/image/Crate/AllCladSSRstRk16x13AVSSS21_VND/$web_gr_list_desktop$/260326111348/AllCladSSRstRk16x13AVSSS21_VND.jpg",9],
+  ["Crate & Barrel Pro 12-Cup Muffin Pan (USA Pan)","Crate & Barrel","Baking",39.95,1,"https://www.crateandbarrel.com/crate-and-barrel-pro-12-cup-muffin-pan-with-silicone-non-stick-coating-made-by-usa-pan/s570775","https://cb.scene7.com/is/image/Crate/USAPanExSlcn12cMuffinSSS26/$web_gr_list_desktop$/260326111354/USAPanExSlcn12cMuffinSSS26.jpg",7],
+  ["KitchenAid Citrus Juicer Attachment","Crate & Barrel","Electrics",29.95,1,"https://www.crateandbarrel.com/kitchenaid-citrus-juicer-attachment/s616336","https://cb.scene7.com/is/image/Crate/KitchenAdMxCtrJcAttAV3SSS22_VND/$web_gr_list_desktop$/240201123505/kitchenaid-citrus-juicer-attachment.jpg",6],
+  ["KitchenAid Stand Mixer Flex Edge Beater","Crate & Barrel","Electrics",29.95,1,"https://www.crateandbarrel.com/kitchenaid-stand-mixer-flex-edge-beater/s332588","https://cb.scene7.com/is/image/Crate/KitchenAdSMFlxEgBtrAV3SSS22_VND/$web_gr_list_desktop$/240201123538/kitchenaid-stand-mixer-flex-edge-beater-blade.jpg",7],
+  ["KitchenAid Stand Mixer Ice Cream Maker Attachment","Crate & Barrel","Electrics",79.95,1,"https://www.crateandbarrel.com/kitchenaid-stand-mixer-ice-cream-maker-attachment/s653269","https://cb.scene7.com/is/image/Crate/KitchnAdIcCrmMkrAttAV2SSS22_VND/$web_gr_list_desktop$/240201123546/kitchenaid-mixer-ice-cream-maker-attachment.jpg",7],
+  ["KitchenAid Spiralizer with Peel, Core and Slice","Crate & Barrel","Electrics",89.95,2,"https://www.crateandbarrel.com/kitchenaid-spiralizer-with-peel-core-and-slice/s532705","https://cb.scene7.com/is/image/Crate/KitchenAidSprlCtrAtchmntSSS21_VND/$web_gr_list_desktop$/240201114902/kitchenaid-mixer-5-blade-spiralizer-plus-attachment-with-peel-core-and-slice.jpg",6],
+  ["Berry Box White Porcelain Colander","Crate & Barrel","Tools & Prep",12.95,1,"https://www.crateandbarrel.com/berry-box-white-porcelain-colander/s183167","https://cb.scene7.com/is/image/Crate/BerryBoxColander5p25inWhtSHF19/$web_gr_list_desktop$/240201071114/berry-box-white-colander.jpg",5],
+  ["OXO Seafood Cracker","Crate & Barrel","Tools & Prep",14.95,1,"https://www.crateandbarrel.com/oxo-seafood-cracker/s655241","https://cb.scene7.com/is/image/Crate/OXOSeafoodCrackerSSS24/$web_gr_list_desktop$/240201144530/oxo-seafood-cracker.jpg",5],
+  ["Small Stone Molcajete 4\"","Crate & Barrel","Tools & Prep",16.95,1,"https://www.crateandbarrel.com/small-stone-molcajete-4/s560572","https://cb.scene7.com/is/image/Crate/Molcajete4inSSF20/$web_gr_list_desktop$/240201084843/molcajete-4.jpg",7],
+  ["OXO Stainless Steel Swivel Peeler","Crate & Barrel","Tools & Prep",17.95,1,"https://www.crateandbarrel.com/oxo-stainless-steel-swivel-peeler/s394426","https://cb.scene7.com/is/image/Crate/OXOSteelSwvlPeelerSSS22_VND/$web_gr_list_desktop$/240201123145/oxo-steel-swivel-peeler.jpg",8],
+  ["Over-The-Sink Mesh Colander","Crate & Barrel","Tools & Prep",34.95,1,"https://www.crateandbarrel.com/over-the-sink-mesh-colander/s604461","https://cb.scene7.com/is/image/Crate/OverTheSinkMeshColanderSHF16/$web_gr_list_desktop$/240201164050/over-the-sink-mesh-colander.jpg",7],
+  ["Long Flexible Stainless Steel Turner Spatula","Crate & Barrel","Tools & Prep",34.95,1,"https://www.crateandbarrel.com/crate-and-barrel-long-flexible-stainless-steel-turner-spatula/s609832","https://cb.scene7.com/is/image/Crate/CBLongFlexSSTurnerSSS24/$web_gr_list_desktop$/240201144447/crate-and-barrel-long-flexible-stainless-steel-turner.jpg",7],
+  ["Large 60-oz. Glass Jug","Crate & Barrel","Kitchen Storage",16.95,1,"https://www.crateandbarrel.com/large-60-oz-glass-jug/s351883","https://cb.scene7.com/is/image/Crate/Large60ozGlassJugSSF25/$web_gr_list_desktop$/260326111343/Large60ozGlassJugSSF25.jpg",6],
+  ["KitchenAid Grey Ribbed Soft Silicone Pot Holders, Set of 2","Crate & Barrel","Kitchen",20.95,1,"https://www.crateandbarrel.com/kitchenaid-grey-ribbed-soft-silicone-pot-holders-set-of-2/s354439","https://cb.scene7.com/is/image/Crate/KARbdSlcPtHldS2GrySSS25_VND/$web_gr_list_desktop$/260326111354/KARbdSlcPtHldS2GrySSS25_VND.jpg",6],
+  ["Lara Organic Cotton Warm White Boucle Full/Queen Duvet Cover","Crate & Barrel","Bedding",219.00,1,"https://www.cb2.com/lara-organic-cotton-warm-white-boucle-full-queen-duvet-cover/s688101","https://cb2.scene7.com/is/image/CB2/LaraOrgCttnWmWtBclFQDvtSHF25/$web_gr_list_desktop$/260326152019/LaraOrgCttnWmWtBclFQDvtSHF25.jpg",7],
+  ["Organic Cotton Waffle Crisp White King Duvet Cover","Crate & Barrel","Bedding",229.95,1,"https://www.crateandbarrel.com/organic-cotton-waffle-crisp-white-king-duvet-cover/s343079","https://cb.scene7.com/is/image/Crate/OrgCtnWaffleCWhtFQDvtFSSS25/$web_gr_list_desktop$/260326112048/OrgCtnWaffleCWhtFQDvtFSSS25.jpg",7],
+  ["Aire Natural Linen Pampas Ivory Queen Bed Sheet Set","Crate & Barrel","Bedding",299.95,1,"https://www.crateandbarrel.com/aire-natural-european-flax-certified-linen-pampas-ivory-queen-bed-sheet-set/s589018","https://cb.scene7.com/is/image/Crate/EuroFlxLnPmIvryQnShtStSHS24/$web_gr_list_desktop$/240201143931/european-flax--certified-linen-pampas-ivory-sheet-sets.jpg",8],
+  ["Apotheke Sea Salt Grapefruit Reed Diffuser","Crate & Barrel","Decor",60.00,1,"https://www.crateandbarrel.com/apotheke-sea-salt-grapefruit-reed-diffuser/s124321","https://cb.scene7.com/is/image/Crate/ApothekeSeaSaltGrpfrtDfsrSSS21/$web_gr_list_desktop$/240201095533/apotheke-sea-salt-grapefruit-reed-diffuser.jpg",6],
+  // Scully & Scully
+  ["Ginori Oriente Italiano Pervinca Dinner Plate","Scully & Scully","China",180.00,12,"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-dinner-plate","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010265G00123900_0.jpg",8],
+  ["Ginori Oriente Italiano Citrino Dessert Plate","Scully & Scully","China",130.00,12,"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-dessert-plate","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010210G00124400_0.jpg",7],
+  ["Ginori Oriente Italiano Citrino Bread & Butter Plate","Scully & Scully","China",107.00,12,"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-bread-butter-plate","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010170G00123900_0.jpg",8],
+  ["Ginori Oriente Italiano Pervinca Rim Soup Bowl","Scully & Scully","China",180.00,12,"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-rim-soup-bowl","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT210010240G00124400_0.jpg",8],
+  ["Ginori Oriente Italiano Citrino Oval Platter","Scully & Scully","China",370.00,1,"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-oval-platter","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00123900_0.jpg",8],
+  ["Ginori Oriente Italiano Citrino Salad Bowl","Scully & Scully","China",595.00,1,"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-salad-bowl","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FIN030010250G00123900_0.jpg",7],
+  ["Ginori Oriente Italiano Pervinca Oval Platter, Small","Scully & Scully","China",445.00,1,"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-oval-platter","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00124400_0.jpg",7],
+  ["Ginori Oriente Italiano Pervinca Fruit Stand","Scully & Scully","China",640.00,1,"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-fruit-stand","https://www.scullyandscully.com/Webstore Product Images/PO003RG00FCT300010220G00124400_0.jpg",6],
+  ["Spode Blue Italian Dinner Plate","Scully & Scully","China",35.00,12,"https://www.scullyandscully.com/spode-blue-italian-dinner-plate","https://www.scullyandscully.com/Webstore Product Images/SPD1532481-1_0.jpg",7],
+  ["Spode Blue Italian Salad Plate","Scully & Scully","China",25.75,12,"https://www.scullyandscully.com/spode-blue-italian-salad-plate","https://www.scullyandscully.com/Webstore Product Images/SPD1532498_0.jpg",7],
+  ["Spode Blue Italian Cereal Bowl","Scully & Scully","China",24.50,12,"https://www.scullyandscully.com/spode-blue-italian-cereal-bowl","https://www.scullyandscully.com/Webstore Product Images/SPD1532634_0.jpg",7],
+  ["Spode Blue Italian Chip & Dip Serving Platter","Scully & Scully","China",79.00,1,"https://www.scullyandscully.com/spode-blue-italian-chip-dip-serving-platter","https://www.scullyandscully.com/Webstore Product Images/SPD1390395_0.jpg",7],
+  ["Spode Blue Italian Handled Serving Dish","Scully & Scully","China",75.00,1,"https://www.scullyandscully.com/spode-blue-italian-handled-serving-dish","https://www.scullyandscully.com/Webstore Product Images/SPD1408892_0.jpg",7],
+  ["Waterford Lismore Essence Iced Beverage","Scully & Scully","Crystal & Glassware",110.00,12,"https://www.scullyandscully.com/waterford-lismore-essence-iced-beverage","https://www.scullyandscully.com/Webstore Product Images/WA1058181_0.jpg",7],
+  ["Vineyard Picnic Basket for Two, Diamond Orange","Scully & Scully","Entertaining",265.00,1,"https://www.scullyandscully.com/vineyard-picnic-basket-for-two-diamond-orange","https://llathelm.sirv.com/Product%20Images/N-R/P4PAT707/P4PAT707_89625.jpg",8],
+  ["Medium Silver Frame, 8x10","Scully & Scully","Picture Frames",495.00,1,"https://www.scullyandscully.com/medium-silver-frame-8x10","https://llathelm.sirv.com/Product%20Images/E-H/EMR-SILVMED-P4/EMR-SILVMED-P4_18x24.jpg",7],
+  ["Sterling Silver Double Frame, 4x6","Scully & Scully","Picture Frames",575.00,1,"https://www.scullyandscully.com/sterling-silver-double-frame-4x6","https://llathelm.sirv.com/Product%20Images/N-R/P4BW3XAND2XFRAMES/P4BW3XAND2XFRAMES_107443.jpg",6],
+  ["Sterling Silver Salt & Pepper Shaker Set, Large","Scully & Scully","Table Accents",725.00,1,"https://www.scullyandscully.com/sterling-silver-salt-pepper-shaker-set-large","https://llathelm.sirv.com/Product%20Images/N-R/P4PFDSALTNPEPPER/P4PFDSALTNPEPPER_102852.jpg",8],
+  // Bloomingdale's
+  ["All-Clad D3 Stainless Steel 10\" Fry Pan with Lid","Bloomingdales","Cookware",139.99,1,"https://www.bloomingdales.com/shop/product/all-clad-d3-stainless-steel-10-fry-pan-with-lid","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12557695_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["All-Clad D3 Stainless Steel 8-Quart Stock Pot with Lid","Bloomingdales","Cookware",349.99,1,"https://www.bloomingdales.com/shop/product/all-clad-d3-stainless-steel-8-quart-stock-pot","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12557655_fpx.tif?wid=700&qlt=80&fmt=jpeg",10],
+  ["All-Clad D3 Stainless Steel 3-Quart Sauté Pan with Lid","Bloomingdales","Cookware",179.99,1,"https://www.bloomingdales.com/shop/product/all-clad-d3-stainless-steel-3-quart-saute-pan","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12557665_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["All-Clad D3 Stainless Steel 1.5-Quart Sauce Pan with Lid","Bloomingdales","Cookware",159.99,1,"https://www.bloomingdales.com/shop/product/all-clad-d3-stainless-steel-1-5-quart-sauce-pan","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12557645_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["All-Clad D3 Stainless Steel 3-Quart Saucepan with Lid","Bloomingdales","Cookware",149.99,1,"https://www.bloomingdales.com/shop/product/all-clad-d3-stainless-steel-3-quart-saucepan","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12557660_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["Miko Cool Mist Humidifier","Bloomingdales","Home Essentials",99.00,1,"https://www.bloomingdales.com/shop/product/miko-cool-mist-humidifier","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/15584716_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Zadro Ultra Large Luxury Towel Warmer","Bloomingdales","Bath",179.99,1,"https://www.bloomingdales.com/shop/product/zadro-ultra-large-luxury-towel-warmer","https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/12462532_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Nambé Fruit Tree Bowl","Bloomingdales","Serving",160.00,1,"https://www.bloomingdales.com/shop/product/nambe-fruit-tree-bowl","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/3221406_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Juliska Berry & Thread 16\" Platter","Bloomingdales","Serving",120.00,1,"https://www.bloomingdales.com/shop/product/juliska-berry-thread-16-platter","https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/4960431_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Staub Pie Dish","Bloomingdales","Baking",49.99,1,"https://www.bloomingdales.com/shop/product/staub-pie-dish","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/16186725_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["L'Objet Fortuny Orfeo Yellow Bowl","Bloomingdales","Decor",385.00,1,"https://www.bloomingdales.com/shop/product/lobjet-fortuny-orfeo-yellow-bowl","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/12094434_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Waterford Mixology Mixed Small Coupe, Set of 4","Bloomingdales","Crystal & Glassware",352.00,3,"https://www.bloomingdales.com/shop/product/waterford-mixology-mixed-small-coupe-set-of-4","https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/15988761_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["NEST New York Bamboo Collection","Bloomingdales","Decor",99.00,2,"https://www.bloomingdales.com/shop/product/nest-new-york-bamboo-collection","https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/11373082_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Matouk Regent Bath Towel Set","Bloomingdales","Bath",240.00,2,"https://www.bloomingdales.com/shop/product/matouk-regent-bath-towel-set","https://images.bloomingdalesassets.com/is/image/BLM/products/0/optimized/12282810_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["Shun Premier 8\" Chef's Knife","Bloomingdales","Cutlery",219.95,1,"https://www.bloomingdales.com/shop/product/shun-premier-8-chefs-knife","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/10340295_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["Zwilling Pro 7-Piece Knife Block Set","Bloomingdales","Cutlery",369.99,1,"https://www.bloomingdales.com/shop/product/zwilling-pro-7-piece-knife-block-set","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/13302325_fpx.tif?wid=700&qlt=80&fmt=jpeg",10],
+  ["Cuisinart Brushed Stainless Steel Griddler","Bloomingdales","Electrics",129.95,1,"https://www.bloomingdales.com/shop/product/cuisinart-brushed-stainless-steel-griddler","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/1785725_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Breville Barista Touch","Bloomingdales","Electrics",799.95,1,"https://www.bloomingdales.com/shop/product/breville-barista-touch","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/13046253_fpx.tif?wid=700&qlt=80&fmt=jpeg",9],
+  ["OXO Good Grips Digital Instant Read Thermometer","Bloomingdales","Tools & Prep",25.99,1,"https://www.bloomingdales.com/shop/product/oxo-good-grips-digital-instant-read-thermometer","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/3011925_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Le Creuset 3.5-Ounce Espresso Mug","Bloomingdales","Dinnerware",15.00,6,"https://www.bloomingdales.com/shop/product/le-creuset-espresso-mug","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/2839409_fpx.tif?wid=700&qlt=80&fmt=jpeg",6],
+  ["OXO Stainless Steel Meat Tenderizer","Bloomingdales","Tools & Prep",24.99,1,"https://www.bloomingdales.com/shop/product/oxo-stainless-steel-meat-tenderizer","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/7561855_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["OXO Stainless Steel Slicing Knife","Bloomingdales","Cutlery",74.99,1,"https://www.bloomingdales.com/shop/product/oxo-stainless-steel-slicing-knife","https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/10340272_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Juliska Cabana Stripe Melamine Dessert/Salad Plate, Set of 4","Bloomingdales","Dinnerware",88.00,3,"https://www.bloomingdales.com/shop/product/juliska-cabana-stripe-melamine-dessert-salad-plate-set-of-4","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/14453905_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Juliska Berry & Thread Melamine Dinner Plate, Set of 4","Bloomingdales","Dinnerware",125.00,3,"https://www.bloomingdales.com/shop/product/juliska-berry-thread-melamine-dinner-plate-set-of-4","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/12004115_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Juliska Cabana Stripe Napkin, Set of 4","Bloomingdales","Table Linens",125.00,3,"https://www.bloomingdales.com/shop/product/juliska-cabana-stripe-napkin-set-of-4","https://images.bloomingdalesassets.com/is/image/BLM/products/0/optimized/14453930_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Nambé Harmony Salad Bowl Set","Bloomingdales","Serving",107.00,1,"https://www.bloomingdales.com/shop/product/nambe-harmony-salad-bowl-set","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/3221443_fpx.tif?wid=700&qlt=80&fmt=jpeg",7],
+  ["Le Creuset Oval Stoneware Fish Baker","Bloomingdales","Bakeware",135.00,1,"https://www.bloomingdales.com/shop/product/le-creuset-oval-stoneware-fish-baker","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/2856357_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Hestan OvenBond 3-Piece Tri-ply Clad Stainless Ovenware Set","Bloomingdales","Cookware",249.95,1,"https://www.bloomingdales.com/shop/product/hestan-ovenbond-3-piece-tri-ply-clad-stainless-steel-ovenware-set","https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/14714881_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Caraway Non Toxic Ceramic Nonstick Frying Pan, 10.5\"","Bloomingdales","Cookware",125.00,1,"https://www.bloomingdales.com/shop/product/caraway-non-toxic-ceramic-nonstick-frying-pan","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/15547777_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Matouk Kiran Robe (His)","Bloomingdales","Bath",178.00,1,"https://www.bloomingdales.com/shop/product/matouk-kiran-robe","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/15033577_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  ["Matouk Kiran Robe (Hers)","Bloomingdales","Bath",178.00,1,"https://www.bloomingdales.com/shop/product/matouk-kiran-robe","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/15033577_fpx.tif?wid=700&qlt=80&fmt=jpeg",8],
+  // Williams Sonoma
+  ["Guy Degrenne Marquise 5-Piece Flatware Set","Williams Sonoma","Flatware",129.95,12,"https://www.williams-sonoma.com/products/guy-degrenne-marquise-flatware/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202340/0043/img47l.jpg",8],
+  ["Signature 1000 Thread Count Sateen Sheet Set, Queen White","Williams Sonoma","Bedding",799.00,1,"https://www.williams-sonoma.com/products/signature-1000-thread-count-sateen-sheet-set/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202309/0028/img13l.jpg",9],
+  ["Open Kitchen by Williams Sonoma Gravy Boat","Williams Sonoma","Serving",14.95,1,"https://www.williams-sonoma.com/products/open-kitchen-gravy-boat/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0076/img76l.jpg",7],
+  ["Nordic Ware Nonstick 9\" Springform Cake Pan, Gold","Williams Sonoma","Baking",29.95,1,"https://www.williams-sonoma.com/products/nordic-ware-nonstick-springform-cake-pan/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202315/0095/img49l.jpg",8],
+  ["Hold Everything Ceramic Utensil Rest","Williams Sonoma","Kitchen",19.95,1,"https://www.williams-sonoma.com/products/hold-everything-ceramic-utensil-rest/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0055/img49l.jpg",7],
+  ["Le Creuset San Francisco Rectangle Covered Casserole, 4qt Agave","Williams Sonoma","Cookware",140.00,1,"https://www.williams-sonoma.com/products/le-creuset-san-francisco-rectangular-casserole/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202333/0043/img37l.jpg",9],
+  ["OXO Good Grips V-Blade Mandoline","Williams Sonoma","Tools & Prep",52.95,1,"https://www.williams-sonoma.com/products/oxo-good-grips-v-blade-mandoline/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0093/img22l.jpg",8],
+  ["Breville Juice Fountain Cold Plus","Williams Sonoma","Electrics",329.95,1,"https://www.williams-sonoma.com/products/breville-juice-fountain-cold-plus/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202332/0017/img52l.jpg",7],
+  ["Faux Shagreen Rectangular Placemat, Gold","Williams Sonoma","Table Linens",19.95,12,"https://www.williams-sonoma.com/products/faux-shagreen-rectangular-placemat/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0058/img22l.jpg",7],
+  ["Williams Sonoma Waterproof Pen Thermometer","Williams Sonoma","Tools & Prep",39.95,1,"https://www.williams-sonoma.com/products/williams-sonoma-waterproof-pen-thermometer/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0071/img76l.jpg",8],
+  ["Williams Sonoma Solid Oven Mitt, Drizzle Grey","Williams Sonoma","Kitchen",14.95,2,"https://www.williams-sonoma.com/products/williams-sonoma-solid-oven-mitt/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0054/img58l.jpg",8],
+  ["Williams Sonoma Solid Potholder, Drizzle Grey","Williams Sonoma","Kitchen",12.95,2,"https://www.williams-sonoma.com/products/williams-sonoma-solid-potholder/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0054/img62l.jpg",7],
+  ["Jacquard Duvet Cover, Full/Queen, Blue","Williams Sonoma","Bedding",249.00,1,"https://www.williams-sonoma.com/products/jacquard-duvet-cover/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202336/0018/img49l.jpg",7],
+  ["KitchenAid Stand Mixer Ice Cream Maker Attachment","Williams Sonoma","Electrics",119.95,1,"https://www.williams-sonoma.com/products/kitchenaid-stand-mixer-ice-cream-maker-attachment/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202332/0017/img50l.jpg",7],
+  ["Scanpan Black Edition Nonstick Wok, 12\"","Williams Sonoma","Cookware",249.95,1,"https://www.williams-sonoma.com/products/scanpan-black-edition-nonstick-wok/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0051/img58l.jpg",8],
+  ["Williams Sonoma Classic Stripe Logo Apron, Drizzle Grey","Williams Sonoma","Kitchen",29.95,2,"https://www.williams-sonoma.com/products/williams-sonoma-classic-stripe-logo-apron/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0054/img25l.jpg",7],
+  ["Williams Sonoma Acacia Board, 16\" x 12\"","Williams Sonoma","Tools & Prep",49.95,1,"https://www.williams-sonoma.com/products/williams-sonoma-acacia-board/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0051/img62l.jpg",9],
+  ["Kitchen Torch","Williams Sonoma","Tools & Prep",59.95,1,"https://www.williams-sonoma.com/products/kitchen-torch/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0093/img11l.jpg",7],
+  ["Microplane Box Grater","Williams Sonoma","Tools & Prep",64.95,1,"https://www.williams-sonoma.com/products/microplane-box-grater/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0053/img22l.jpg",9],
+  ["Williams Sonoma Open Kitchen Kitchen Shears","Williams Sonoma","Tools & Prep",14.95,1,"https://www.williams-sonoma.com/products/open-kitchen-kitchen-shears/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0093/img72l.jpg",8],
+  ["OXO Good Grips Bulb Baster","Williams Sonoma","Tools & Prep",11.95,1,"https://www.williams-sonoma.com/products/oxo-good-grips-bulb-baster/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0093/img27l.jpg",7],
+  ["Williams Sonoma Stainless Steel Burger Turner","Williams Sonoma","Tools & Prep",24.95,1,"https://www.williams-sonoma.com/products/williams-sonoma-stainless-steel-prep-tools/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0051/img41l.jpg",7],
+  ["All-Clad Precision Nonstick Whisk","Williams Sonoma","Tools & Prep",44.95,1,"https://www.williams-sonoma.com/products/all-clad-precision-nonstick-whisk/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0051/img44l.jpg",8],
+  ["All-Clad Precision Nonstick Ladle","Williams Sonoma","Tools & Prep",44.95,1,"https://www.williams-sonoma.com/products/all-clad-precision-nonstick-ladle/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0051/img41l.jpg",8],
+  ["Double Wall Glass Coffee Mug, Small","Williams Sonoma","Drinkware",19.95,4,"https://www.williams-sonoma.com/products/double-wall-glass-coffee-mug/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0055/img25l.jpg",7],
+  ["Open Kitchen by Williams Sonoma Snack Bowl","Williams Sonoma","Serving",7.95,12,"https://www.williams-sonoma.com/products/open-kitchen-snack-bowl/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202311/0076/img71l.jpg",6],
+  ["Modern Optic Highball Glasses","Williams Sonoma","Drinkware",21.95,12,"https://www.williams-sonoma.com/products/modern-optic-highball-glasses/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0055/img41l.jpg",7],
+  ["Riedel Vinum Cabernet Glass","Williams Sonoma","Wine",42.50,10,"https://www.williams-sonoma.com/products/riedel-vinum-cabernet-glass/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0054/img37l.jpg",8],
+  ["Williams Sonoma Reserve Highball Glass","Williams Sonoma","Drinkware",24.95,12,"https://www.williams-sonoma.com/products/williams-sonoma-reserve-highball-glass/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0055/img43l.jpg",7],
+  ["Riedel Vinum Chardonnay Glass","Williams Sonoma","Wine",42.50,10,"https://www.williams-sonoma.com/products/riedel-vinum-chardonnay-glass/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0054/img33l.jpg",8],
+  ["Savannah Cereal Bowls","Williams Sonoma","Dinnerware",17.95,12,"https://www.williams-sonoma.com/products/savannah-cereal-bowls/","https://assets.wsimgs.com/wsimgs/ab/images/dp/wcm/202338/0055/img62l.jpg",6],
 ];
 
+// ── State ────────────────────────────────────────────────────────────────────
 let activeStore = 'all';
-let activePurchased = 'all';
-let searchQuery = '';
-let activeSort = 'default';
+let activeCat   = 'all';
+let activeSort  = 'category';
+let query       = '';
 
-document.getElementById('searchInput').addEventListener('input', e => {
-  searchQuery = e.target.value.toLowerCase();
-  render();
-});
+const STORE_LABEL = {
+  "Crate & Barrel":"Crate & Barrel",
+  "Scully & Scully":"Scully & Scully",
+  "Bloomingdales":"Bloomingdale's",
+  "Williams Sonoma":"Williams Sonoma"
+};
 
-document.getElementById('sortSelect').addEventListener('change', e => {
-  activeSort = e.target.value;
-  render();
-});
+// Recommended order: index position in ITEMS acts as the score
+// (items already ordered thoughtfully above, so index = priority)
 
-function filterStore(btn, store) {
-  document.querySelectorAll('.store-pill').forEach(b => b.classList.remove('active'));
+// ── Filter setters ────────────────────────────────────────────────────────────
+function setStore(btn, store) {
+  document.querySelectorAll('#storeTabs .tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   activeStore = store;
   render();
 }
-
-function filterPurchased(btn, state) {
-  document.querySelectorAll('.purchased-row .pill').forEach(b => b.classList.remove('active'));
+function setCat(btn, cat) {
+  document.querySelectorAll('#catTabs .cat-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  activePurchased = state;
+  activeCat = cat;
   render();
 }
-
-function getStoreLabel(store) {
-  const map = {
-    "Crate & Barrel": "Crate & Barrel",
-    "Scully & Scully": "Scully & Scully",
-    "Bloomingdales": "Bloomingdale's",
-    "Williams Sonoma": "Williams Sonoma"
-  };
-  return map[store] || store;
+function buildCatTabs() {
+  const allCats = [...new Set(ITEMS.map(i => i[2]))].sort();
+  const wrap = document.getElementById('catTabs');
+  if (!wrap) return;
+  wrap.innerHTML = `<button class="cat-tab active" onclick="setCat(this,'all')">All</button>` +
+    allCats.map(c => `<button class="cat-tab" onclick="setCat(this,'${c.replace(/'/g,"\'")}')">` + c + `</button>`).join('');
 }
 
-function sortItems(list) {
-  const sorted = [...list];
-
-  if (activeSort === 'low-high') {
-    sorted.sort((a, b) => Number(a.price) - Number(b.price));
-  } else if (activeSort === 'high-low') {
-    sorted.sort((a, b) => Number(b.price) - Number(a.price));
-  } else if (activeSort === 'az') {
-    sorted.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  return sorted;
+function setSort(val) {
+  activeSort = val;
+  render();
 }
-
-function render() {
-  const filtered = items.filter(item => {
-    const matchStore = activeStore === 'all' || item.store === activeStore;
-    const matchPurchased =
-      activePurchased === 'all' ||
-      (activePurchased === 'available' && !item.purchased) ||
-      (activePurchased === 'purchased' && item.purchased);
-
-    const matchSearch =
-      !searchQuery ||
-      item.name.toLowerCase().includes(searchQuery) ||
-      item.cat.toLowerCase().includes(searchQuery) ||
-      item.store.toLowerCase().includes(searchQuery);
-
-    return matchStore && matchPurchased && matchSearch;
-  });
-
-  document.getElementById('resultsCount').textContent =
-    `${filtered.length} item${filtered.length !== 1 ? 's' : ''}`;
-
-  const cats = [...new Set(filtered.map(i => i.cat))].sort();
-  const content = document.getElementById('registryContent');
-
-  if (filtered.length === 0) {
-    content.innerHTML = '<div class="no-results">No items found — try adjusting your filters.</div>';
-    return;
-  }
-
-  content.innerHTML = cats.map(cat => {
-    const catItems = sortItems(filtered.filter(i => i.cat === cat));
-
-    const cards = catItems.map(item => {
-      const safeName = escapeHtml(item.name);
-      const safeStore = escapeHtml(getStoreLabel(item.store));
-      const safeImg = escapeHtml(item.img);
-      const safeUrl = escapeHtml(item.url);
-
-      return `
-        <div class="item-card ${item.purchased ? 'purchased' : ''}">
-          <div class="item-img-wrap">
-            <img
-              src="${safeImg}"
-              alt="${safeName}"
-              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23f8f4e8%22 width=%22200%22 height=%22200%22/><text fill=%22%23aaa%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22>No image</text></svg>'"
-            >
-            ${item.purchased ? '<div class="purchased-badge">Purchased</div>' : ''}
-          </div>
-          <div class="item-body">
-            <div class="item-store">${safeStore}</div>
-            <div class="item-name">${safeName}</div>
-            <div class="item-price">$${Number(item.price).toFixed(2)}</div>
-            <div class="item-qty">Qty requested: ${item.qty}</div>
-            <a class="btn-buy" href="${safeUrl}" target="_blank" rel="noopener">Purchase →</a>
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    return `
-      <div class="category-section">
-        <div class="category-heading"><h2>${escapeHtml(cat)}</h2></div>
-        <div class="items-grid">${cards}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-render();
-</script>
-Add this version. It keeps your existing filters, adds sorting, and keeps price visually subtle.
-
-Replace your current file with this structure, and paste your full items array where noted.
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andy & Ximena — Registry</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --butter: #FFF3C1;
-      --butter2: #FFF3C1;
-      --green: #2D7439;
-      --green-lt: #3d7a39;
-      --gold: #B8860B;
-      --gold-lt: #D4A017;
-      --text: #2D7439;
-      --muted: #6b8f68;
-      --white: #ffffff;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--butter);
-      font-family: 'Montserrat', sans-serif;
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .header {
-      text-align: center;
-      padding: 52px 20px 36px;
-      background: var(--butter);
-      position: relative;
-    }
-
-    .header::after {
-      content: '';
-      display: block;
-      width: 120px;
-      height: 1px;
-      background: var(--gold);
-      margin: 0 auto;
-      opacity: 0.6;
-    }
-
-    .monogram {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.2rem;
-      color: var(--gold);
-      line-height: 1;
-      margin-bottom: 6px;
-      letter-spacing: 0.02em;
-    }
-
-    .header-date {
-      font-size: 0.65rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
-
-    .header-sub {
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .header-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--green);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .ornament {
-      text-align: center;
-      color: var(--gold);
-      font-size: 1rem;
-      letter-spacing: 0.5em;
-      padding: 18px 0 12px;
-      opacity: 0.7;
-    }
-
-    .note-bar {
-      background: var(--butter2);
-      border-top: 1px solid rgba(184,134,11,0.25);
-      border-bottom: 1px solid rgba(184,134,11,0.25);
-      text-align: center;
-      padding: 14px 20px;
-      font-size: 0.62rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--green);
-      line-height: 1.8;
-    }
-
-    .controls {
-      padding: 24px 20px 8px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .search-wrap {
-      position: relative;
-      margin-bottom: 14px;
-    }
-
-    .search-wrap input {
-      width: 100%;
-      padding: 10px 16px 10px 38px;
-      border: 1px solid rgba(42,90,39,0.3);
-      background: rgba(255,255,255,0.6);
-      border-radius: 2px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--green);
-      outline: none;
-    }
-
-    .search-wrap input::placeholder {
-      color: var(--muted);
-      opacity: 0.7;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .filter-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .filter-label {
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-right: 4px;
-    }
-
-    .pill {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border: 1px solid rgba(42,90,39,0.35);
-      background: transparent;
-      color: var(--green);
-      cursor: pointer;
-      border-radius: 1px;
-      transition: all 0.2s;
-    }
-
-    .pill:hover { background: rgba(42,90,39,0.08); }
-    .pill.active { background: var(--green); color: var(--butter); border-color: var(--green); }
-
-    .store-pill { border-color: rgba(184,134,11,0.4); color: var(--gold); }
-    .store-pill:hover { background: rgba(184,134,11,0.08); }
-    .store-pill.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
-
-    .sort-select {
-      border: 1px solid rgba(42,90,39,0.35);
-      background: rgba(255,255,255,0.6);
-      color: var(--green);
-      padding: 6px 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 1px;
-      outline: none;
-    }
-
-    .results-count {
-      text-align: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 10px 0 4px;
-    }
-
-    .category-section {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 16px 8px;
-    }
-
-    .category-heading {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 28px 0 14px;
-    }
-
-    .category-heading h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 2rem;
-      color: var(--gold);
-      white-space: nowrap;
-      line-height: 1;
-    }
-
-    .category-heading::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: rgba(184,134,11,0.3);
-    }
-
-    .items-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-
-    .item-card {
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(184,134,11,0.2);
-      border-radius: 2px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .item-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(42,90,39,0.1);
-    }
-
-    .item-card.purchased {
-      opacity: 0.52;
-      pointer-events: none;
-    }
-
-    .item-img-wrap {
-      width: 100%;
-      aspect-ratio: 1;
-      overflow: hidden;
-      background: #f8f4e8;
-      position: relative;
-    }
-
-    .item-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s;
-    }
-
-    .item-card:hover .item-img-wrap img { transform: scale(1.04); }
-
-    .purchased-badge {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.65);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .item-body {
-      padding: 12px 12px 10px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .item-store {
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 4px;
-    }
-
-    .item-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.95rem;
-      color: var(--green);
-      line-height: 1.35;
-      flex: 1;
-      margin-bottom: 8px;
-    }
-
-    .item-price {
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      margin-bottom: 10px;
-      font-weight: 400;
-    }
-
-    .item-qty {
-      font-size: 0.58rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .btn-buy {
-      display: block;
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.58rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      border: 1px solid rgba(42,90,39,0.5);
-      padding: 7px 10px;
-      text-decoration: none;
-      transition: all 0.2s;
-      border-radius: 1px;
-    }
-
-    .btn-buy:hover {
-      background: var(--green);
-      color: var(--butter);
-      border-color: var(--green);
-    }
-
-    .footer {
-      text-align: center;
-      padding: 40px 20px 50px;
-      margin-top: 20px;
-      border-top: 1px solid rgba(184,134,11,0.2);
-    }
-
-    .footer-monogram {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.6rem;
-      color: var(--gold);
-      opacity: 0.7;
-    }
-
-    .footer-date {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 48px 20px;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 480px) {
-      .monogram { font-size: 2.4rem; }
-      .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .category-heading h2 { font-size: 1.6rem; }
-    }
-  </style>
-</head>
-<body>
-
-<div class="header">
-  <div class="monogram">Andy & Ximena</div>
-  <div class="header-date">August 29, 2026 · St. Patrick's Cathedral · New York City</div>
-  <div class="header-sub">Wedding Registry</div>
-  <p class="header-intro">Your love and support means the world to us and is truly the greatest gift of all.</p>
-</div>
-
-<div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
-
-<div class="note-bar">
-  Items will open within each retailer’s site or registry.
-</div>
-
-<div class="controls">
-  <div class="search-wrap">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="searchInput" placeholder="Search items...">
-  </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Store</span>
-    <button class="pill store-pill active" onclick="filterStore(this,'all')">All Stores</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Crate & Barrel')">Crate &amp; Barrel</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Scully & Scully')">Scully &amp; Scully</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Bloomingdales')">Bloomingdale's</button>
-    <button class="pill store-pill" onclick="filterStore(this,'Williams Sonoma')">Williams Sonoma</button>
-  </div>
-
-  <div class="filter-row purchased-row">
-    <span class="filter-label">Show</span>
-    <button class="pill active" onclick="filterPurchased(this,'all')">All Items</button>
-    <button class="pill" onclick="filterPurchased(this,'available')">Still Needed</button>
-    <button class="pill" onclick="filterPurchased(this,'purchased')">Purchased</button>
-  </div>
-
-  <div class="filter-row">
-    <span class="filter-label">Arrange</span>
-    <select id="sortSelect" class="sort-select">
-      <option value="default">Default</option>
-      <option value="low-high">Lowest to Highest</option>
-      <option value="high-low">Highest to Lowest</option>
-      <option value="az">A to Z</option>
-    </select>
-  </div>
-</div>
-
-<div class="results-count" id="resultsCount"></div>
-<div id="registryContent"></div>
-
-<div class="footer">
-  <div class="footer-monogram">X &amp; A</div>
-  <div class="footer-date">08.29.2026</div>
-</div>
-
-<script>
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-const items = [
-  /* PASTE YOUR FULL EXISTING ITEMS ARRAY HERE */
-];
-
-let activeStore = 'all';
-let activePurchased = 'all';
-let searchQuery = '';
-let activeSort = 'default';
-
-document.getElementById('searchInput').addEventListener('input', e => {
-  searchQuery = e.target.value.toLowerCase();
+document.getElementById('search').addEventListener('input', e => {
+  query = e.target.value.toLowerCase().trim();
   render();
 });
 
-document.getElementById('sortSelect').addEventListener('change', e => {
-  activeSort = e.target.value;
-  render();
-});
-
-function filterStore(btn, store) {
-  document.querySelectorAll('.store-pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activeStore = store;
-  render();
-}
-
-function filterPurchased(btn, state) {
-  document.querySelectorAll('.purchased-row .pill').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  activePurchased = state;
-  render();
-}
-
-function getStoreLabel(store) {
-  const map = {
-    "Crate & Barrel": "Crate & Barrel",
-    "Scully & Scully": "Scully & Scully",
-    "Bloomingdales": "Bloomingdale's",
-    "Williams Sonoma": "Williams Sonoma"
-  };
-  return map[store] || store;
-}
-
-function sortItems(list) {
-  const sorted = [...list];
-
-  if (activeSort === 'low-high') {
-    sorted.sort((a, b) => Number(a.price) - Number(b.price));
-  } else if (activeSort === 'high-low') {
-    sorted.sort((a, b) => Number(b.price) - Number(a.price));
-  } else if (activeSort === 'az') {
-    sorted.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  return sorted;
-}
-
+// ── Render ────────────────────────────────────────────────────────────────────
 function render() {
-  const filtered = items.filter(item => {
-    const matchStore = activeStore === 'all' || item.store === activeStore;
-    const matchPurchased =
-      activePurchased === 'all' ||
-      (activePurchased === 'available' && !item.purchased) ||
-      (activePurchased === 'purchased' && item.purchased);
+  let show = ITEMS.filter(item => {
+    const [name, store, cat] = item;
+    return (activeStore === 'all' || store === activeStore)
+        && (activeCat   === 'all' || cat   === activeCat)
 
-    const matchSearch =
-      !searchQuery ||
-      item.name.toLowerCase().includes(searchQuery) ||
-      item.cat.toLowerCase().includes(searchQuery) ||
-      item.store.toLowerCase().includes(searchQuery);
-
-    return matchStore && matchPurchased && matchSearch;
+        && (!query || name.toLowerCase().includes(query) || cat.toLowerCase().includes(query) || (STORE_LABEL[store]||store).toLowerCase().includes(query));
   });
 
-  document.getElementById('resultsCount').textContent =
-    `${filtered.length} item${filtered.length !== 1 ? 's' : ''}`;
+  // Sort
+  if (activeSort === 'price-asc')   show = [...show].sort((a,b) => a[3] - b[3]);
+  if (activeSort === 'price-desc')  show = [...show].sort((a,b) => b[3] - a[3]);
+  if (activeSort === 'recommended') show = [...show].sort((a,b) => b[7] - a[7]);
+  // 'category' uses grouped render below; no additional sort needed
 
-  const cats = [...new Set(filtered.map(i => i.cat))].sort();
-  const content = document.getElementById('registryContent');
+  document.getElementById('count').textContent = `${show.length} item${show.length !== 1 ? 's' : ''}`;
 
-  if (filtered.length === 0) {
-    content.innerHTML = '<div class="no-results">No items found — try adjusting your filters.</div>';
+  const reg = document.getElementById('registry');
+  if (!show.length) {
+    reg.innerHTML = '<div class="no-results">No items found — try adjusting your filters.</div>';
     return;
   }
 
-  content.innerHTML = cats.map(cat => {
-    const catItems = sortItems(filtered.filter(i => i.cat === cat));
-
-    const cards = catItems.map(item => {
-      const safeName = escapeHtml(item.name);
-      const safeStore = escapeHtml(getStoreLabel(item.store));
-      const safeImg = escapeHtml(item.img);
-      const safeUrl = escapeHtml(item.url);
-
-      return `
-        <div class="item-card ${item.purchased ? 'purchased' : ''}">
-          <div class="item-img-wrap">
-            <img
-              src="${safeImg}"
-              alt="${safeName}"
-              onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22><rect fill=%22%23f8f4e8%22 width=%22200%22 height=%22200%22/><text fill=%22%23aaa%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22>No image</text></svg>'"
-            >
-            ${item.purchased ? '<div class="purchased-badge">Purchased</div>' : ''}
-          </div>
-          <div class="item-body">
-            <div class="item-store">${safeStore}</div>
-            <div class="item-name">${safeName}</div>
-            <div class="item-price">$${Number(item.price).toFixed(2)}</div>
-            <div class="item-qty">Qty requested: ${item.qty}</div>
-            <a class="btn-buy" href="${safeUrl}" target="_blank" rel="noopener">Purchase →</a>
-          </div>
-        </div>
-      `;
+  // Flat grid for all sorts except category grouping
+  if (activeSort === 'category') {
+    const cats = [...new Set(show.map(i => i[2]))].sort();
+    reg.innerHTML = cats.map(cat => {
+      const catItems = show.filter(i => i[2] === cat);
+      return `<div class="cat-section">
+        <div class="cat-heading"><h2>${cat}</h2></div>
+        <div class="items-grid">${catItems.map(cardHTML).join('')}</div>
+      </div>`;
     }).join('');
-
-    return `
-      <div class="category-section">
-        <div class="category-heading"><h2>${escapeHtml(cat)}</h2></div>
-        <div class="items-grid">${cards}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-Continue it by replacing the placeholder with your full items array, then keep the rest exactly as below.
-
-<script>
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-const items = [
-  {name:"Mercer Arctic Blue Recycled Stoneware Cereal Bowl",store:"Crate & Barrel",cat:"Dinnerware",price:8.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/mercer-arctic-blue-recycled-stoneware-cereal-bowl/s606325",img:"https://cb.scene7.com/is/image/Crate/MercerArBlRcyStnCerealSSF25/$web_gr_list_desktop$/260326111342/MercerArBlRcyStnCerealSSF25.jpg"},
-  {name:"KitchenAid Artisan Series 5-Quart Stand Mixer",store:"Crate & Barrel",cat:"Electrics",price:399.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer/s663278",img:"https://cb.scene7.com/is/image/Crate/KitchenAidArt5qtMxrRedSSS22_VND/$web_gr_list_desktop$/240201123517/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer.jpg"},
-  {name:"Range 12-oz. Mug by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:11.96,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-mug-by-leanne-ford/s400553",img:"https://cb.scene7.com/is/image/Crate/RangeMugSSS22/$web_gr_list_desktop$/240201121126/range-mug.jpg"},
-  {name:"Range Dinner Plate by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:13.56,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-dinner-plate-by-leanne-ford/s632742",img:"https://cb.scene7.com/is/image/Crate/RangeDinnerPlateSSF20/$web_gr_list_desktop$/240201094509/range-dinner-plate.jpg"},
-  {name:"Marin White Stoneware Gravy Boat",store:"Crate & Barrel",cat:"Dinnerware",price:24.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/marin-white-stoneware-gravy-boat/s308609",img:"https://cb.scene7.com/is/image/Crate/MarinWhtGravyBoatSSS20/$web_gr_list_desktop$/240201083013/marin-white-gravy-boat.jpg"},
-  {name:"Le Creuset Heritage White Ceramic Butter Dish",store:"Crate & Barrel",cat:"Dinnerware",price:35.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/le-creuset-heritage-stoneware-butter-dish/s680424",img:"https://cb.scene7.com/is/image/Crate/LeCrsetHrtgWhtButterDshSSS22_VND/$web_gr_list_desktop$/240201123528/le-creuset-heritage-stoneware-butter-dish.jpg"},
-  {name:"Tulip Ice Cream Dish",store:"Crate & Barrel",cat:"Serving",price:4.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/tulip-ice-cream-dish/s507520",img:"https://cb.scene7.com/is/image/Crate/TulipIceCreamDishSSS25/$web_gr_list_desktop$/260326111342/TulipIceCreamDishSSS25.jpg"},
-  {name:"Caesna Mirror Serving Tongs",store:"Crate & Barrel",cat:"Flatware",price:25.00,qty:1,purchased:false,url:"https://www.crateandbarrel.com/caesna-mirror-serving-tongs/s452488",img:"https://cb.scene7.com/is/image/Crate/CaesnaMirrorServeTongsSSS26/$web_gr_list_desktop$/260326111349/CaesnaMirrorServeTongsSSS26.jpg"},
-  {name:"Caesna Texture 5-Piece Flatware Place Setting",store:"Crate & Barrel",cat:"Flatware",price:50.00,qty:12,purchased:false,url:"https://www.crateandbarrel.com/caesna-texture-5-piece-flatware-place-setting/s547572",img:"https://cb.scene7.com/is/image/Crate/CaesnaTxt5pFltwrPlcstngSSS24/$web_gr_list_desktop$/240201151144/caesna-texture-flatware-place-setting.jpg"},
-  {name:"Alma 13-oz. Acrylic Highball Glass",store:"Crate & Barrel",cat:"Drinkware",price:7.96,qty:1,purchased:false,url:"https://www.crateandbarrel.com/alma-13-oz-acrylic-highball-glass/s320819",img:"https://cb.scene7.com/is/image/Crate/AlmaClearAcrylicHighballSSS25/$web_gr_list_desktop$/260326111636/AlmaClearAcrylicHighballSSS25.jpg"},
-  {name:"Edge 13-Oz. Tall Glass",store:"Crate & Barrel",cat:"Drinkware",price:9.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/edge-13-oz-tall-glass/s322922",img:"https://cb.scene7.com/is/image/Crate/EdgeTallGlass13ozSSF21/$web_gr_list_desktop$/240201112911/edge-tall-glass-13oz.jpg"},
-  {name:"Impressions 17-oz. Cooler Glasses, Set of 12",store:"Crate & Barrel",cat:"Drinkware",price:33.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/impressions-17-oz-cooler-glasses-set-of-12/s643477",img:"https://cb.scene7.com/is/image/Crate/ImpressionsCooler17ozS12SSS21/$web_gr_list_desktop$/240201113034/impressions-cooler-glasses-set-of-12.jpg"},
-  {name:"Beau 1.75-Gallon Glass Drink Dispenser",store:"Crate & Barrel",cat:"Drinkware",price:59.96,qty:1,purchased:false,url:"https://www.crateandbarrel.com/beau-1-75-gallon-glass-drink-dispenser/s160801",img:"https://cb.scene7.com/is/image/Crate/Beau1p75glDrnkDspnsrSSF25/$web_gr_list_desktop$/260326111342/Beau1p75glDrnkDspnsrSSF25.jpg"},
-  {name:"Schott Zwiesel Tour 15-Oz. White Wine Glass",store:"Crate & Barrel",cat:"Wine",price:13.56,qty:1,purchased:false,url:"https://www.crateandbarrel.com/schott-zwiesel-tour-15-oz-white-wine-glass/s583459",img:"https://cb.scene7.com/is/image/Crate/TourWhiteWine15ozSSS22/$web_gr_list_desktop$/240201123539/tour-white-wine-glass.jpg"},
-  {name:"Schott Zwiesel Tour 18-Oz. Red Wine Glass",store:"Crate & Barrel",cat:"Wine",price:13.56,qty:1,purchased:false,url:"https://www.crateandbarrel.com/schott-zwiesel-tour-18-oz-red-wine-glass/s677446",img:"https://cb.scene7.com/is/image/Crate/TourRedWine18ozSSS22/$web_gr_list_desktop$/240201123534/tour-red-wine-glass.jpg"},
-  {name:"Marin Natural Linen Napkin",store:"Crate & Barrel",cat:"Table Linens",price:14.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/marin-natural-european-flax-certified-linen-napkin/s223272",img:"https://cb.scene7.com/is/image/Crate/MarinLinenNpknWmNatSSF22/$web_gr_list_desktop$/240201131053/marin-warm-natural-linen-dinner-napkin.jpg"},
-  {name:'All-Clad Large 16"x13" Stainless Steel Roasting Pan with Rack',store:"Crate & Barrel",cat:"Cookware",price:149.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/all-clad-large-16-x13-stainless-steel-roasting-pan-with-rack/s219608",img:"https://cb.scene7.com/is/image/Crate/AllCladSSRstRk16x13AVSSS21_VND/$web_gr_list_desktop$/260326111348/AllCladSSRstRk16x13AVSSS21_VND.jpg"},
-  {name:"Crate & Barrel Pro 12-Cup Muffin Pan (USA Pan)",store:"Crate & Barrel",cat:"Baking",price:39.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/crate-and-barrel-pro-12-cup-muffin-pan-with-silicone-non-stick-coating-made-by-usa-pan/s570775",img:"https://cb.scene7.com/is/image/Crate/USAPanExSlcn12cMuffinSSS26/$web_gr_list_desktop$/260326111354/USAPanExSlcn12cMuffinSSS26.jpg"},
-  {name:"KitchenAid Citrus Juicer Attachment",store:"Crate & Barrel",cat:"Electrics",price:29.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-citrus-juicer-attachment/s616336",img:"https://cb.scene7.com/is/image/Crate/KitchenAdMxCtrJcAttAV3SSS22_VND/$web_gr_list_desktop$/240201123505/kitchenaid-citrus-juicer-attachment.jpg"},
-  {name:"KitchenAid Stand Mixer Flex Edge Beater",store:"Crate & Barrel",cat:"Electrics",price:29.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-stand-mixer-flex-edge-beater/s332588",img:"https://cb.scene7.com/is/image/Crate/KitchenAdSMFlxEgBtrAV3SSS22_VND/$web_gr_list_desktop$/240201123538/kitchenaid-stand-mixer-flex-edge-beater-blade.jpg"},
-  {name:"KitchenAid Stand Mixer Ice Cream Maker Attachment",store:"Crate & Barrel",cat:"Electrics",price:79.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-stand-mixer-ice-cream-maker-attachment/s653269",img:"https://cb.scene7.com/is/image/Crate/KitchnAdIcCrmMkrAttAV2SSS22_VND/$web_gr_list_desktop$/240201123546/kitchenaid-mixer-ice-cream-maker-attachment.jpg"},
-  {name:"KitchenAid Spiralizer with Peel, Core and Slice",store:"Crate & Barrel",cat:"Electrics",price:89.95,qty:2,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-spiralizer-with-peel-core-and-slice/s532705",img:"https://cb.scene7.com/is/image/Crate/KitchenAidSprlCtrAtchmntSSS21_VND/$web_gr_list_desktop$/240201114902/kitchenaid-mixer-5-blade-spiralizer-plus-attachment-with-peel-core-and-slice.jpg"},
-  {name:"Breville Oracle Jet Espresso Machine",store:"Crate & Barrel",cat:"Electrics",price:1999.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/breville-oracle-jet-espresso-machine-in-stainless-steel/s239160",img:"https://cb.scene7.com/is/image/Crate/BrevilleEsprOrcJtSsSSS24_VND/$web_gr_list_desktop$/260326111343/BrevilleEsprOrcJtSsSSS24_VND.jpg"},
-  {name:"Berry Box White Porcelain Colander",store:"Crate & Barrel",cat:"Tools & Prep",price:12.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/berry-box-white-porcelain-colander/s183167",img:"https://cb.scene7.com/is/image/Crate/BerryBoxColander5p25inWhtSHF19/$web_gr_list_desktop$/240201071114/berry-box-white-colander.jpg"},
-  {name:"OXO Seafood Cracker",store:"Crate & Barrel",cat:"Tools & Prep",price:14.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/oxo-seafood-cracker/s655241",img:"https://cb.scene7.com/is/image/Crate/OXOSeafoodCrackerSSS24/$web_gr_list_desktop$/240201144530/oxo-seafood-cracker.jpg"},
-  {name:'Small Stone Molcajete 4"',store:"Crate & Barrel",cat:"Tools & Prep",price:16.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/small-stone-molcajete-4/s560572",img:"https://cb.scene7.com/is/image/Crate/Molcajete4inSSF20/$web_gr_list_desktop$/240201084843/molcajete-4.jpg"},
-  {name:"OXO Stainless Steel Swivel Peeler",store:"Crate & Barrel",cat:"Tools & Prep",price:17.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/oxo-stainless-steel-swivel-peeler/s394426",img:"https://cb.scene7.com/is/image/Crate/OXOSteelSwvlPeelerSSS22_VND/$web_gr_list_desktop$/240201123145/oxo-steel-swivel-peeler.jpg"},
-  {name:"Over-The-Sink Mesh Colander",store:"Crate & Barrel",cat:"Tools & Prep",price:34.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/over-the-sink-mesh-colander/s604461",img:"https://cb.scene7.com/is/image/Crate/OverTheSinkMeshColanderSHF16/$web_gr_list_desktop$/240201164050/over-the-sink-mesh-colander.jpg"},
-  {name:"Long Flexible Stainless Steel Turner Spatula",store:"Crate & Barrel",cat:"Tools & Prep",price:34.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/crate-and-barrel-long-flexible-stainless-steel-turner-spatula/s609832",img:"https://cb.scene7.com/is/image/Crate/CBLongFlexSSTurnerSSS24/$web_gr_list_desktop$/240201144447/crate-and-barrel-long-flexible-stainless-steel-turner.jpg"},
-  {name:"Large 60-oz. Glass Jug",store:"Crate & Barrel",cat:"Kitchen Storage",price:16.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/large-60-oz-glass-jug/s351883",img:"https://cb.scene7.com/is/image/Crate/Large60ozGlassJugSSF25/$web_gr_list_desktop$/260326111343/Large60ozGlassJugSSF25.jpg"},
-  {name:"KitchenAid Grey Ribbed Soft Silicone Pot Holders, Set of 2",store:"Crate & Barrel",cat:"Kitchen",price:20.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-grey-ribbed-soft-silicone-pot-holders-set-of-2/s354439",img:"https://cb.scene7.com/is/image/Crate/KARbdSlcPtHldS2GrySSS25_VND/$web_gr_list_desktop$/260326111354/KARbdSlcPtHldS2GrySSS25_VND.jpg"},
-  {name:"Lara Organic Cotton Warm White Boucle Full/Queen Duvet Cover",store:"Crate & Barrel",cat:"Bedding",price:219.00,qty:1,purchased:false,url:"https://www.cb2.com/lara-organic-cotton-warm-white-boucle-full-queen-duvet-cover/s688101",img:"https://cb2.scene7.com/is/image/CB2/LaraOrgCttnWmWtBclFQDvtSHF25/$web_gr_list_desktop$/260326152019/LaraOrgCttnWmWtBclFQDvtSHF25.jpg"},
-  {name:"Organic Cotton Waffle Crisp White King Duvet Cover",store:"Crate & Barrel",cat:"Bedding",price:229.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/organic-cotton-waffle-crisp-white-king-duvet-cover/s343079",img:"https://cb.scene7.com/is/image/Crate/OrgCtnWaffleCWhtFQDvtFSSS25/$web_gr_list_desktop$/260326112048/OrgCtnWaffleCWhtFQDvtFSSS25.jpg"},
-  {name:"Aire Natural Linen Pampas Ivory Queen Bed Sheet Set",store:"Crate & Barrel",cat:"Bedding",price:299.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/aire-natural-european-flax-certified-linen-pampas-ivory-queen-bed-sheet-set/s589018",img:"https://cb.scene7.com/is/image/Crate/EuroFlxLnPmIvryQnShtStSHS24/$web_gr_list_desktop$/240201143931/european-flax--certified-linen-pampas-ivory-sheet-sets.jpg"},
-  {name:"Apotheke Sea Salt Grapefruit Reed Diffuser",store:"Crate & Barrel",cat:"Decor",price:60.00,qty:1,purchased:false,url:"https://www.crateandbarrel.com/apotheke-sea-salt-grapefruit-reed-diffuser/s124321",img:"https://cb.scene7.com/is/image/Crate/ApothekeSeaSaltGrpfrtDfsrSSS21/$web_gr_list_desktop$/240201095533/apotheke-sea-salt-grapefruit-reed-diffuser.jpg"},
-
-  {name:"Ginori Oriente Italiano Citrino Dinner Plate",store:"Scully & Scully",cat:"China",price:150.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-dinner-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010265G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Dessert Plate",store:"Scully & Scully",cat:"China",price:160.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-dessert-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010210G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Bread & Butter Plate",store:"Scully & Scully",cat:"China",price:107.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-bread-butter-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010170G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Rim Soup Bowl",store:"Scully & Scully",cat:"China",price:180.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-rim-soup-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT210010240G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Oval Platter",store:"Scully & Scully",cat:"China",price:370.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-oval-platter",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Salad Bowl",store:"Scully & Scully",cat:"China",price:595.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-salad-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FIN030010250G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Oval Platter, Small",store:"Scully & Scully",cat:"China",price:445.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-oval-platter",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Fruit Stand",store:"Scully & Scully",cat:"China",price:640.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-fruit-stand",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FCT300010220G00124400_0.jpg"},
-  {name:"Spode Blue Italian Dinner Plate",store:"Scully & Scully",cat:"China",price:35.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-dinner-plate",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532481-1_0.jpg"},
-  {name:"Spode Blue Italian Salad Plate",store:"Scully & Scully",cat:"China",price:25.75,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-salad-plate",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532498_0.jpg"},
-  {name:"Spode Blue Italian Cereal Bowl",store:"Scully & Scully",cat:"China",price:24.50,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-cereal-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532634_0.jpg"},
-  {name:"Spode Blue Italian Chip & Dip Serving Platter",store:"Scully & Scully",cat:"China",price:79.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-chip-dip-serving-platter",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1390395_0.jpg"},
-  {name:"Spode Blue Italian Handled Serving Dish",store:"Scully & Scully",cat:"China",price:75.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-handled-serving-dish",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1408892_0.jpg"},
-  {name:"Waterford Lismore Essence Iced Beverage",store:"Scully & Scully",cat:"Crystal & Glassware",price:110.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-essence-iced-beverage",img:"https://www.scullyandscully.com/Webstore Product Images/WA1058181_0.jpg"},
-  {name:"Waterford Lismore Essence Medium Wine, Set of 2",store:"Scully & Scully",cat:"Crystal & Glassware",price:110.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-essence-medium-wine-set-of-2",img:"https://www.scullyandscully.com/Webstore Product Images/WA1071596_0.jpg"},
-  {name:"Waterford Lismore Pitcher",store:"Scully & Scully",cat:"Crystal & Glassware",price:395.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-pitcher",img:"https://www.scullyandscully.com/Webstore Product Images/WA1058533_0.jpg"},
-  {name:"Sterling Silver Salt & Pepper Shaker Set, Large",store:"Scully & Scully",cat:"Table Accents",price:725.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/sterling-silver-salt-pepper-shaker-set-large",img:"https://llathelm.sirv.com/Product%20Images/N-R/P4PFDSALTNPEPPER/P4PFDSALTNPEPPER_102852.jpg"},
-  {name:"Vineyard Picnic Basket for Two, Diamond Orange",store:"Scully & Scully",cat:"Entertaining",price:265.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/vineyard-picnic-basket-for-two-diamond-orange",img:"https://llathelm.sirv.com/Product%20Images/N-R/P4PAT707/P4PAT707_89625.jpg"},
-  {name:"Medium Silver Frame, 8x10",store:"Scully & Scully",cat:"Picture Frames",price:495.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/medium-silver-frame-8x10",img:"https://llathelm.sirv.com/Product%20Images/E-H/EMR-SILVMED-P4/EMR-SILVMED-P4_18x24.jpg"},
-  {name:"Sterling Silver Double Frame, 4x6",store:"Scully & Scully",cat:"Picture Frames",price:575.00,qty:1,purchased:false,url:"https://llathelm.sirv.com/Product%20Images/N-R/P4BW3XAND2XFRAMES/P4BW
-Continue it by replacing the placeholder with your full items array, then keep the rest exactly as below.
-
-<script>
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-render();
-
-const items = [
-  {name:"Mercer Arctic Blue Recycled Stoneware Cereal Bowl",store:"Crate & Barrel",cat:"Dinnerware",price:8.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/mercer-arctic-blue-recycled-stoneware-cereal-bowl/s606325",img:"https://cb.scene7.com/is/image/Crate/MercerArBlRcyStnCerealSSF25/$web_gr_list_desktop$/260326111342/MercerArBlRcyStnCerealSSF25.jpg"},
-  {name:"KitchenAid Artisan Series 5-Quart Stand Mixer",store:"Crate & Barrel",cat:"Electrics",price:399.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer/s663278",img:"https://cb.scene7.com/is/image/Crate/KitchenAidArt5qtMxrRedSSS22_VND/$web_gr_list_desktop$/240201123517/kitchenaid-artisan-series-5-qt-tilt-head-stand-mixer.jpg"},
-  {name:"Range 12-oz. Mug by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:11.96,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-mug-by-leanne-ford/s400553",img:"https://cb.scene7.com/is/image/Crate/RangeMugSSS22/$web_gr_list_desktop$/240201121126/range-mug.jpg"},
-  {name:"Range Dinner Plate by Leanne Ford",store:"Crate & Barrel",cat:"Dinnerware",price:13.56,qty:8,purchased:false,url:"https://www.crateandbarrel.com/range-dinner-plate-by-leanne-ford/s632742",img:"https://cb.scene7.com/is/image/Crate/RangeDinnerPlateSSF20/$web_gr_list_desktop$/240201094509/range-dinner-plate.jpg"},
-  {name:"Marin White Stoneware Gravy Boat",store:"Crate & Barrel",cat:"Dinnerware",price:24.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/marin-white-stoneware-gravy-boat/s308609",img:"https://cb.scene7.com/is/image/Crate/MarinWhtGravyBoatSSS20/$web_gr_list_desktop$/240201083013/marin-white-gravy-boat.jpg"},
-  {name:"Le Creuset Heritage White Ceramic Butter Dish",store:"Crate & Barrel",cat:"Dinnerware",price:35.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/le-creuset-heritage-stoneware-butter-dish/s680424",img:"https://cb.scene7.com/is/image/Crate/LeCrsetHrtgWhtButterDshSSS22_VND/$web_gr_list_desktop$/240201123528/le-creuset-heritage-stoneware-butter-dish.jpg"},
-  {name:"Tulip Ice Cream Dish",store:"Crate & Barrel",cat:"Serving",price:4.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/tulip-ice-cream-dish/s507520",img:"https://cb.scene7.com/is/image/Crate/TulipIceCreamDishSSS25/$web_gr_list_desktop$/260326111342/TulipIceCreamDishSSS25.jpg"},
-  {name:"Caesna Mirror Serving Tongs",store:"Crate & Barrel",cat:"Flatware",price:25.00,qty:1,purchased:false,url:"https://www.crateandbarrel.com/caesna-mirror-serving-tongs/s452488",img:"https://cb.scene7.com/is/image/Crate/CaesnaMirrorServeTongsSSS26/$web_gr_list_desktop$/260326111349/CaesnaMirrorServeTongsSSS26.jpg"},
-  {name:"Caesna Texture 5-Piece Flatware Place Setting",store:"Crate & Barrel",cat:"Flatware",price:50.00,qty:12,purchased:false,url:"https://www.crateandbarrel.com/caesna-texture-5-piece-flatware-place-setting/s547572",img:"https://cb.scene7.com/is/image/Crate/CaesnaTxt5pFltwrPlcstngSSS24/$web_gr_list_desktop$/240201151144/caesna-texture-flatware-place-setting.jpg"},
-  {name:"Alma 13-oz. Acrylic Highball Glass",store:"Crate & Barrel",cat:"Drinkware",price:7.96,qty:1,purchased:false,url:"https://www.crateandbarrel.com/alma-13-oz-acrylic-highball-glass/s320819",img:"https://cb.scene7.com/is/image/Crate/AlmaClearAcrylicHighballSSS25/$web_gr_list_desktop$/260326111636/AlmaClearAcrylicHighballSSS25.jpg"},
-  {name:"Edge 13-Oz. Tall Glass",store:"Crate & Barrel",cat:"Drinkware",price:9.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/edge-13-oz-tall-glass/s322922",img:"https://cb.scene7.com/is/image/Crate/EdgeTallGlass13ozSSF21/$web_gr_list_desktop$/240201112911/edge-tall-glass-13oz.jpg"},
-  {name:"Impressions 17-oz. Cooler Glasses, Set of 12",store:"Crate & Barrel",cat:"Drinkware",price:33.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/impressions-17-oz-cooler-glasses-set-of-12/s643477",img:"https://cb.scene7.com/is/image/Crate/ImpressionsCooler17ozS12SSS21/$web_gr_list_desktop$/240201113034/impressions-cooler-glasses-set-of-12.jpg"},
-  {name:"Beau 1.75-Gallon Glass Drink Dispenser",store:"Crate & Barrel",cat:"Drinkware",price:59.96,qty:1,purchased:false,url:"https://www.crateandbarrel.com/beau-1-75-gallon-glass-drink-dispenser/s160801",img:"https://cb.scene7.com/is/image/Crate/Beau1p75glDrnkDspnsrSSF25/$web_gr_list_desktop$/260326111342/Beau1p75glDrnkDspnsrSSF25.jpg"},
-  {name:"Schott Zwiesel Tour 15-Oz. White Wine Glass",store:"Crate & Barrel",cat:"Wine",price:13.56,qty:1,purchased:false,url:"https://www.crateandbarrel.com/schott-zwiesel-tour-15-oz-white-wine-glass/s583459",img:"https://cb.scene7.com/is/image/Crate/TourWhiteWine15ozSSS22/$web_gr_list_desktop$/240201123539/tour-white-wine-glass.jpg"},
-  {name:"Schott Zwiesel Tour 18-Oz. Red Wine Glass",store:"Crate & Barrel",cat:"Wine",price:13.56,qty:1,purchased:false,url:"https://www.crateandbarrel.com/schott-zwiesel-tour-18-oz-red-wine-glass/s677446",img:"https://cb.scene7.com/is/image/Crate/TourRedWine18ozSSS22/$web_gr_list_desktop$/240201123534/tour-red-wine-glass.jpg"},
-  {name:"Marin Natural Linen Napkin",store:"Crate & Barrel",cat:"Table Linens",price:14.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/marin-natural-european-flax-certified-linen-napkin/s223272",img:"https://cb.scene7.com/is/image/Crate/MarinLinenNpknWmNatSSF22/$web_gr_list_desktop$/240201131053/marin-warm-natural-linen-dinner-napkin.jpg"},
-  {name:'All-Clad Large 16"x13" Stainless Steel Roasting Pan with Rack',store:"Crate & Barrel",cat:"Cookware",price:149.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/all-clad-large-16-x13-stainless-steel-roasting-pan-with-rack/s219608",img:"https://cb.scene7.com/is/image/Crate/AllCladSSRstRk16x13AVSSS21_VND/$web_gr_list_desktop$/260326111348/AllCladSSRstRk16x13AVSSS21_VND.jpg"},
-  {name:"Crate & Barrel Pro 12-Cup Muffin Pan (USA Pan)",store:"Crate & Barrel",cat:"Baking",price:39.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/crate-and-barrel-pro-12-cup-muffin-pan-with-silicone-non-stick-coating-made-by-usa-pan/s570775",img:"https://cb.scene7.com/is/image/Crate/USAPanExSlcn12cMuffinSSS26/$web_gr_list_desktop$/260326111354/USAPanExSlcn12cMuffinSSS26.jpg"},
-  {name:"KitchenAid Citrus Juicer Attachment",store:"Crate & Barrel",cat:"Electrics",price:29.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-citrus-juicer-attachment/s616336",img:"https://cb.scene7.com/is/image/Crate/KitchenAdMxCtrJcAttAV3SSS22_VND/$web_gr_list_desktop$/240201123505/kitchenaid-citrus-juicer-attachment.jpg"},
-  {name:"KitchenAid Stand Mixer Flex Edge Beater",store:"Crate & Barrel",cat:"Electrics",price:29.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-stand-mixer-flex-edge-beater/s332588",img:"https://cb.scene7.com/is/image/Crate/KitchenAdSMFlxEgBtrAV3SSS22_VND/$web_gr_list_desktop$/240201123538/kitchenaid-stand-mixer-flex-edge-beater-blade.jpg"},
-  {name:"KitchenAid Stand Mixer Ice Cream Maker Attachment",store:"Crate & Barrel",cat:"Electrics",price:79.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-stand-mixer-ice-cream-maker-attachment/s653269",img:"https://cb.scene7.com/is/image/Crate/KitchnAdIcCrmMkrAttAV2SSS22_VND/$web_gr_list_desktop$/240201123546/kitchenaid-mixer-ice-cream-maker-attachment.jpg"},
-  {name:"KitchenAid Spiralizer with Peel, Core and Slice",store:"Crate & Barrel",cat:"Electrics",price:89.95,qty:2,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-spiralizer-with-peel-core-and-slice/s532705",img:"https://cb.scene7.com/is/image/Crate/KitchenAidSprlCtrAtchmntSSS21_VND/$web_gr_list_desktop$/240201114902/kitchenaid-mixer-5-blade-spiralizer-plus-attachment-with-peel-core-and-slice.jpg"},
-  {name:"Breville Oracle Jet Espresso Machine",store:"Crate & Barrel",cat:"Electrics",price:1999.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/breville-oracle-jet-espresso-machine-in-stainless-steel/s239160",img:"https://cb.scene7.com/is/image/Crate/BrevilleEsprOrcJtSsSSS24_VND/$web_gr_list_desktop$/260326111343/BrevilleEsprOrcJtSsSSS24_VND.jpg"},
-  {name:"Berry Box White Porcelain Colander",store:"Crate & Barrel",cat:"Tools & Prep",price:12.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/berry-box-white-porcelain-colander/s183167",img:"https://cb.scene7.com/is/image/Crate/BerryBoxColander5p25inWhtSHF19/$web_gr_list_desktop$/240201071114/berry-box-white-colander.jpg"},
-  {name:"OXO Seafood Cracker",store:"Crate & Barrel",cat:"Tools & Prep",price:14.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/oxo-seafood-cracker/s655241",img:"https://cb.scene7.com/is/image/Crate/OXOSeafoodCrackerSSS24/$web_gr_list_desktop$/240201144530/oxo-seafood-cracker.jpg"},
-  {name:'Small Stone Molcajete 4"',store:"Crate & Barrel",cat:"Tools & Prep",price:16.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/small-stone-molcajete-4/s560572",img:"https://cb.scene7.com/is/image/Crate/Molcajete4inSSF20/$web_gr_list_desktop$/240201084843/molcajete-4.jpg"},
-  {name:"OXO Stainless Steel Swivel Peeler",store:"Crate & Barrel",cat:"Tools & Prep",price:17.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/oxo-stainless-steel-swivel-peeler/s394426",img:"https://cb.scene7.com/is/image/Crate/OXOSteelSwvlPeelerSSS22_VND/$web_gr_list_desktop$/240201123145/oxo-steel-swivel-peeler.jpg"},
-  {name:"Over-The-Sink Mesh Colander",store:"Crate & Barrel",cat:"Tools & Prep",price:34.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/over-the-sink-mesh-colander/s604461",img:"https://cb.scene7.com/is/image/Crate/OverTheSinkMeshColanderSHF16/$web_gr_list_desktop$/240201164050/over-the-sink-mesh-colander.jpg"},
-  {name:"Long Flexible Stainless Steel Turner Spatula",store:"Crate & Barrel",cat:"Tools & Prep",price:34.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/crate-and-barrel-long-flexible-stainless-steel-turner-spatula/s609832",img:"https://cb.scene7.com/is/image/Crate/CBLongFlexSSTurnerSSS24/$web_gr_list_desktop$/240201144447/crate-and-barrel-long-flexible-stainless-steel-turner.jpg"},
-  {name:"Large 60-oz. Glass Jug",store:"Crate & Barrel",cat:"Kitchen Storage",price:16.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/large-60-oz-glass-jug/s351883",img:"https://cb.scene7.com/is/image/Crate/Large60ozGlassJugSSF25/$web_gr_list_desktop$/260326111343/Large60ozGlassJugSSF25.jpg"},
-  {name:"KitchenAid Grey Ribbed Soft Silicone Pot Holders, Set of 2",store:"Crate & Barrel",cat:"Kitchen",price:20.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/kitchenaid-grey-ribbed-soft-silicone-pot-holders-set-of-2/s354439",img:"https://cb.scene7.com/is/image/Crate/KARbdSlcPtHldS2GrySSS25_VND/$web_gr_list_desktop$/260326111354/KARbdSlcPtHldS2GrySSS25_VND.jpg"},
-  {name:"Lara Organic Cotton Warm White Boucle Full/Queen Duvet Cover",store:"Crate & Barrel",cat:"Bedding",price:219.00,qty:1,purchased:false,url:"https://www.cb2.com/lara-organic-cotton-warm-white-boucle-full-queen-duvet-cover/s688101",img:"https://cb2.scene7.com/is/image/CB2/LaraOrgCttnWmWtBclFQDvtSHF25/$web_gr_list_desktop$/260326152019/LaraOrgCttnWmWtBclFQDvtSHF25.jpg"},
-  {name:"Organic Cotton Waffle Crisp White King Duvet Cover",store:"Crate & Barrel",cat:"Bedding",price:229.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/organic-cotton-waffle-crisp-white-king-duvet-cover/s343079",img:"https://cb.scene7.com/is/image/Crate/OrgCtnWaffleCWhtFQDvtFSSS25/$web_gr_list_desktop$/260326112048/OrgCtnWaffleCWhtFQDvtFSSS25.jpg"},
-  {name:"Aire Natural Linen Pampas Ivory Queen Bed Sheet Set",store:"Crate & Barrel",cat:"Bedding",price:299.95,qty:1,purchased:false,url:"https://www.crateandbarrel.com/aire-natural-european-flax-certified-linen-pampas-ivory-queen-bed-sheet-set/s589018",img:"https://cb.scene7.com/is/image/Crate/EuroFlxLnPmIvryQnShtStSHS24/$web_gr_list_desktop$/240201143931/european-flax--certified-linen-pampas-ivory-sheet-sets.jpg"},
-  {name:"Apotheke Sea Salt Grapefruit Reed Diffuser",store:"Crate & Barrel",cat:"Decor",price:60.00,qty:1,purchased:false,url:"https://www.crateandbarrel.com/apotheke-sea-salt-grapefruit-reed-diffuser/s124321",img:"https://cb.scene7.com/is/image/Crate/ApothekeSeaSaltGrpfrtDfsrSSS21/$web_gr_list_desktop$/240201095533/apotheke-sea-salt-grapefruit-reed-diffuser.jpg"},
-
-  {name:"Ginori Oriente Italiano Citrino Dinner Plate",store:"Scully & Scully",cat:"China",price:150.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-dinner-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010265G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Dessert Plate",store:"Scully & Scully",cat:"China",price:160.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-dessert-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010210G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Bread & Butter Plate",store:"Scully & Scully",cat:"China",price:107.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-bread-butter-plate",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT110010170G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Rim Soup Bowl",store:"Scully & Scully",cat:"China",price:180.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-rim-soup-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FPT210010240G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Oval Platter",store:"Scully & Scully",cat:"China",price:370.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-oval-platter",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Citrino Salad Bowl",store:"Scully & Scully",cat:"China",price:595.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-citrino-salad-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FIN030010250G00123900_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Oval Platter, Small",store:"Scully & Scully",cat:"China",price:445.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-oval-platter",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FVS130010340G00124400_0.jpg"},
-  {name:"Ginori Oriente Italiano Pervinca Fruit Stand",store:"Scully & Scully",cat:"China",price:640.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/ginori-oriente-italiano-pervinca-fruit-stand",img:"https://www.scullyandscully.com/Webstore Product Images/PO003RG00FCT300010220G00124400_0.jpg"},
-  {name:"Spode Blue Italian Dinner Plate",store:"Scully & Scully",cat:"China",price:35.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-dinner-plate",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532481-1_0.jpg"},
-  {name:"Spode Blue Italian Salad Plate",store:"Scully & Scully",cat:"China",price:25.75,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-salad-plate",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532498_0.jpg"},
-  {name:"Spode Blue Italian Cereal Bowl",store:"Scully & Scully",cat:"China",price:24.50,qty:12,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-cereal-bowl",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1532634_0.jpg"},
-  {name:"Spode Blue Italian Chip & Dip Serving Platter",store:"Scully & Scully",cat:"China",price:79.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-chip-dip-serving-platter",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1390395_0.jpg"},
-  {name:"Spode Blue Italian Handled Serving Dish",store:"Scully & Scully",cat:"China",price:75.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/spode-blue-italian-handled-serving-dish",img:"https://www.scullyandscully.com/Webstore Product Images/SPD1408892_0.jpg"},
-  {name:"Waterford Lismore Essence Iced Beverage",store:"Scully & Scully",cat:"Crystal & Glassware",price:110.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-essence-iced-beverage",img:"https://www.scullyandscully.com/Webstore Product Images/WA1058181_0.jpg"},
-  {name:"Waterford Lismore Essence Medium Wine, Set of 2",store:"Scully & Scully",cat:"Crystal & Glassware",price:110.00,qty:12,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-essence-medium-wine-set-of-2",img:"https://www.scullyandscully.com/Webstore Product Images/WA1071596_0.jpg"},
-  {name:"Waterford Lismore Pitcher",store:"Scully & Scully",cat:"Crystal & Glassware",price:395.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/waterford-lismore-pitcher",img:"https://www.scullyandscully.com/Webstore Product Images/WA1058533_0.jpg"},
-  {name:"Sterling Silver Salt & Pepper Shaker Set, Large",store:"Scully & Scully",cat:"Table Accents",price:725.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/sterling-silver-salt-pepper-shaker-set-large",img:"https://llathelm.sirv.com/Product%20Images/N-R/P4PFDSALTNPEPPER/P4PFDSALTNPEPPER_102852.jpg"},
-  {name:"Vineyard Picnic Basket for Two, Diamond Orange",store:"Scully & Scully",cat:"Entertaining",price:265.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/vineyard-picnic-basket-for-two-diamond-orange",img:"https://llathelm.sirv.com/Product%20Images/N-R/P4PAT707/P4PAT707_89625.jpg"},
-  {name:"Medium Silver Frame, 8x10",store:"Scully & Scully",cat:"Picture Frames",price:495.00,qty:1,purchased:false,url:"https://www.scullyandscully.com/medium-silver-frame-8x10",img:"https://llathelm.sirv.com/Product%20Images/E-H/EMR-SILVMED-P4/EMR-SILVMED-P4_18x24.jpg"},
-  {name:"Sterling Silver Double Frame, 4x6",store:"Scully & Scully",cat:"Picture Frames",price:575.00,qty:1,purchased:false,url:"https://llathelm.sirv.com/Product%20Images/N-R/P4BW3XAND2XFRAMES/P4BW
-
-];
-
-function render(){
-  let filtered = items.filter(i => storeFilter==="all" || i.store===storeFilter);
-
-  if(sortType==="low"){
-    filtered.sort((a,b)=>a.price-b.price);
-  } else if(sortType==="high"){
-    filtered.sort((a,b)=>b.price-a.price);
-  } else if(sortType==="az"){
-    filtered.sort((a,b)=>a.name.localeCompare(b.name));
+  } else {
+    reg.innerHTML = `<div class="cat-section">
+      <div class="items-grid">${show.map(cardHTML).join('')}</div>
+    </div>`;
   }
+}
 
-  const grid = document.getElementById("grid");
-  grid.innerHTML = filtered.map(item => `
-    <div class="card">
-      <img src="${item.img}">
-      <h3>${item.name}</h3>
-      <div class="price">$${item.price}</div>
-      <button class="buy" onclick="window.open('${item.url}')">Purchase</button>
+function cardHTML([name, store, cat, price, qty, url, img, score]) {
+  return `<div class="card">
+    <div class="card-img">
+      <img src="${img}" alt="${name}" loading="lazy"
+        onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
+      <span class="store-badge">${STORE_LABEL[store]||store}</span>
     </div>
-  `).join("");
+    <div class="card-body">
+      <p class="card-name">${name}</p>
+      <p class="card-price">$${price.toFixed(2)}</p>
+      <p class="card-qty">Qty requested: ${qty}</p>
+      <a class="btn-buy" href="${url}" target="_blank" rel="noopener noreferrer">Purchase &rarr;</a>
+    </div>
+  </div>`;
 }
 
+buildCatTabs();
 render();
-
 </script>
-
 </body>
 </html>
