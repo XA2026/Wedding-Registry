@@ -80,6 +80,15 @@
   }
 
   /* ─── BANNER ─────────────────────────────────────────────────── */
+  .how-to-buy a {
+    color: var(--green);
+    text-decoration: underline;
+    text-decoration-color: rgba(42,90,39,.35);
+    text-underline-offset: 2px;
+    transition: color .2s;
+  }
+  .how-to-buy a:hover { color: var(--gold); text-decoration-color: var(--gold); }
+
   .how-to-buy {
     background: var(--butter2);
     border-top: 1px solid rgba(184,134,11,.25);
@@ -396,14 +405,14 @@
 <header class="site-header">
   <div class="couple-name">Andy &amp; Ximena</div>
   <p class="header-detail">August 29, 2026 &nbsp;·&nbsp; St. Patrick's Cathedral &nbsp;·&nbsp; New York City</p>
-  <p class="header-sub">Wedding Registry</p>
+  <p class="header-sub">Wedding Registry Navigator</p>
   <p class="header-note">Your love and support means the world to us<br>and is truly the greatest gift of all.</p>
 </header>
 
 <!-- How to buy banner -->
 <div class="how-to-buy">
   Click any item to purchase directly through the store's registry &nbsp;·&nbsp;
-  Available at <strong>Crate &amp; Barrel</strong>, <strong>Scully &amp; Scully</strong>, <strong>Bloomingdale's</strong> &amp; <strong>Williams Sonoma</strong>
+  Available at <a href="https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893" target="_blank" rel="noopener"><strong>Crate &amp; Barrel</strong></a>, <a href="https://www.scullyandscully.com/wedding-registry/ximenaandandy" target="_blank" rel="noopener"><strong>Scully &amp; Scully</strong></a>, <a href="https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872" target="_blank" rel="noopener"><strong>Bloomingdale's</strong></a> &amp; <a href="https://www.williams-sonoma.com/registry/b6sbqxkflt/registry-list.html" target="_blank" rel="noopener"><strong>Williams Sonoma</strong></a>
 </div>
 
 <!-- Store filter tabs -->
