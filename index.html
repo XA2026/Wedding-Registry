@@ -80,6 +80,19 @@
   }
 
   /* ─── BANNER ─────────────────────────────────────────────────── */
+  .group-gift-note {
+    background: var(--butter2);
+    border-bottom: 1px solid rgba(184,134,11,.2);
+    text-align: center;
+    padding: 12px 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green);
+    line-height: 1.7;
+  }
+  .group-gift-note strong { font-style: normal; font-weight: 600; color: var(--gold); }
+
   .how-to-buy a {
     color: var(--green);
     text-decoration: underline;
@@ -95,7 +108,7 @@
     border-bottom: 1px solid rgba(184,134,11,.25);
     text-align: center;
     padding: 14px 24px;
-    font-size: .58rem;
+    font-size: .72rem;
     letter-spacing: .16em;
     text-transform: uppercase;
     color: var(--green);
@@ -359,6 +372,22 @@
     .couple-name { font-size: 2.6rem; }
   }
 
+  .group-note {
+    max-width: 860px;
+    margin: 18px auto 0;
+    padding: 12px 24px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green);
+    background: rgba(184,134,11,.06);
+    border: 1px solid rgba(184,134,11,.2);
+    border-radius: 2px;
+    line-height: 1.7;
+  }
+  .group-note strong { font-style: normal; color: var(--gold); }
+
   /* ─── FILTER SECTIONS ─────────────────────────────────────────── */
   .filter-section {
     max-width: 980px;
@@ -436,8 +465,13 @@
 
 <!-- How to buy banner -->
 <div class="how-to-buy">
-  Click any item to purchase directly through the store's registry &nbsp;·&nbsp;
-  Available at <a href="https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893" target="_blank" rel="noopener"><strong>Crate &amp; Barrel</strong></a>, <a href="https://www.scullyandscully.com/wedding-registry/ximenaandandy" target="_blank" rel="noopener"><strong>Scully &amp; Scully</strong></a>, <a href="https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872" target="_blank" rel="noopener"><strong>Bloomingdale's</strong></a> &amp; <a href="https://www.williams-sonoma.com/registry/b6sbqxkflt/registry-list.html" target="_blank" rel="noopener"><strong>Williams Sonoma</strong></a>
+  Click any item to access the store's registry &nbsp;·&nbsp; Available at <a href="https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893" target="_blank" rel="noopener"><strong>Crate &amp; Barrel</strong></a>, <a href="https://www.scullyandscully.com/wedding-registry/ximenaandandy" target="_blank" rel="noopener"><strong>Scully &amp; Scully</strong></a>, <a href="https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872" target="_blank" rel="noopener"><strong>Bloomingdale's</strong></a> &amp; <a href="https://www.williams-sonoma.com/registry/b6sbqxkflt/registry-list.html" target="_blank" rel="noopener"><strong>Williams Sonoma</strong></a>
+</div>
+
+
+<!-- Group gift note -->
+<div class="group-note">
+  ✦ &nbsp; Higher-priced items from <strong>Crate &amp; Barrel</strong> can be contributed to by multiple guests
 </div>
 
 <!-- Store filter tabs -->
@@ -518,11 +552,11 @@ const ITEMS = [
   ["Cuisinart Brushed Stainless Steel Griddler","Bloomingdales","Kitchen",129.95,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/13923_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",4],
   ["OXO Stainless Steel Meat Tenderizer","Bloomingdales","Kitchen",24.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/912174_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",3],
   ["KitchenAid Artisan Series 5-Quart Tilt-Head Stand Mixer","Crate & Barrel","Kitchen",399.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/KitchenAdArtStdMxJlpSSS24_VND?$web_pdp_main_carousel_high$",10],
-  ["Breville Barista Touch Brushed Stainless Steel Espresso Machine with Steam Wand + Reviews","Crate & Barrel","Kitchen",799.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/BrevilleBaristaTchSSS21_VND?$web_pdp_main_carousel_med$",10],
+  ["Breville Barista Touch Brushed Stainless Steel Espresso Machine with Steam Wand","Crate & Barrel","Kitchen",799.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/BrevilleBaristaTchSSS21_VND?$web_pdp_main_carousel_med$",10],
   ["Schott Zwiesel Tour 15-Oz. White Wine Glass","Crate & Barrel","Hosting",13.56,12,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/TourWhiteWine15ozSSS22/$web_gr_list_desktop$/240201123539/tour-white-wine-glass.jpg",9],
   ["Schott Zwiesel Tour 18-Oz. Red Wine Glass","Crate & Barrel","Hosting",13.56,12,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/TourRedWine18ozSSS22/$web_gr_list_desktop$/240201123534/tour-red-wine-glass.jpg",9],
-  ["Dyson Spot+Scrub Ai Wet and Dry Robot Vacuum Cleaner + Reviews","Crate & Barrel","Home",1199.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/DysonSpotScrbAIRobotSSS26_VND/$web_plp_card$/260404070856/DysonSpotScrbAIRobotSSS26_VND.jpg",9],
-  ["Le Creuset White Stoneware Gravy Boat + Reviews","Crate & Barrel","Table Top",35.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/LeCreusetWhGrvyBoatSSS25_VND?$web_pdp_main_carousel_high$",8],
+  ["Dyson Spot+Scrub Ai Wet and Dry Robot Vacuum Cleaner","Crate & Barrel","Home",1199.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/DysonSpotScrbAIRobotSSS26_VND/$web_plp_card$/260404070856/DysonSpotScrbAIRobotSSS26_VND.jpg",9],
+  ["Le Creuset White Stoneware Gravy Boat","Crate & Barrel","Table Top",35.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/LeCreusetWhGrvyBoatSSS25_VND?$web_pdp_main_carousel_high$",8],
   ["Marin Natural Linen Napkin","Crate & Barrel","Home",14.95,12,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/MarinLinenNpknWmNatSSF22/$web_gr_list_desktop$/240201131053/marin-warm-natural-linen-dinner-napkin.jpg",8],
   ["All-Clad Large 16\"x13\" Stainless Steel Roasting Pan with Rack","Crate & Barrel","Kitchen",149.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/AllCladSSRstRk16x13AVSSS21_VND/$web_gr_list_desktop$/260326111348/AllCladSSRstRk16x13AVSSS21_VND.jpg",8],
   ["KitchenAid Citrus Juicer Attachment","Crate & Barrel","Kitchen",29.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/KitchenAdMxCtrJcAttAV3SSS22_VND/$web_gr_list_desktop$/240201123505/kitchenaid-citrus-juicer-attachment.jpg",8],
@@ -686,6 +720,7 @@ function cardHTML([name, store, cat, price, qty, url, img, score]) {
       <img src="${img}" alt="${name}" loading="lazy"
         onerror="this.style.display='none';this.parentElement.classList.add('img-missing')">
       <span class="store-badge">${STORE_LABEL[store]||store}</span>
+
     </div>
     <div class="card-body">
       <p class="card-name">${name}</p>
