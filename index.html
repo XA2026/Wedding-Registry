@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -28,432 +27,445 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
-body {
-background: var(–butter);
-font-family: ‘Montserrat’, sans-serif;
-color: var(–green);
--webkit-font-smoothing: antialiased;
-}
+  body {
+    background: var(--butter);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--green);
+    -webkit-font-smoothing: antialiased;
+  }
 
-/* ─── HEADER ─────────────────────────────────────────────────── */
-.site-header {
-text-align: center;
-padding: 56px 24px 40px;
-background: var(–butter);
-position: relative;
-}
-.site-header::before,
-.site-header::after {
-content: ‘’;
-display: block;
-width: 200px;
-height: 1px;
-background: linear-gradient(to right, transparent, var(–gold), transparent);
-margin: 0 auto;
-opacity: .55;
-}
-.site-header::before { margin-bottom: 28px; }
-.site-header::after  { margin-top: 28px; }
+  /* ─── HEADER ─────────────────────────────────────────────────── */
+  .site-header {
+    text-align: center;
+    padding: 56px 24px 40px;
+    background: var(--butter);
+    position: relative;
+  }
+  .site-header::before,
+  .site-header::after {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto;
+    opacity: .55;
+  }
+  .site-header::before { margin-bottom: 28px; }
+  .site-header::after  { margin-top: 28px; }
 
-.couple-name {
-font-family: ‘Great Vibes’, cursive;
-font-size: clamp(2.8rem, 7vw, 4.2rem);
-color: var(–gold);
-line-height: 1;
-letter-spacing: .02em;
-margin-bottom: 10px;
-}
-.header-detail {
-font-size: .6rem;
-letter-spacing: .22em;
-text-transform: uppercase;
-color: var(–green);
-line-height: 2;
-}
-.header-sub {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: 1.25rem;
-font-weight: 600;
-letter-spacing: .18em;
-text-transform: uppercase;
-color: var(–green);
-margin-top: 6px;
-margin-bottom: 18px;
-}
-.header-note {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 1.05rem;
-color: var(–green);
-max-width: 500px;
-margin: 0 auto;
-line-height: 1.75;
-}
+  .couple-name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.8rem, 7vw, 4.2rem);
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: .02em;
+    margin-bottom: 10px;
+  }
+  .header-detail {
+    font-size: .6rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--green);
+    line-height: 2;
+  }
+  .header-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-top: 6px;
+    margin-bottom: 18px;
+  }
+  .header-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--green);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.75;
+  }
 
-/* ─── BANNER ─────────────────────────────────────────────────── */
-.group-gift-note {
-background: var(–butter2);
-border-bottom: 1px solid rgba(184,134,11,.2);
-text-align: center;
-padding: 12px 28px;
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 1rem;
-color: var(–green);
-line-height: 1.7;
-}
-.group-gift-note strong { font-style: normal; font-weight: 600; color: var(–gold); }
+  /* ─── BANNER ─────────────────────────────────────────────────── */
+  .group-gift-note {
+    background: var(--butter2);
+    border-bottom: 1px solid rgba(184,134,11,.2);
+    text-align: center;
+    padding: 12px 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green);
+    line-height: 1.7;
+  }
+  .group-gift-note strong { font-style: normal; font-weight: 600; color: var(--gold); }
 
-.how-to-buy a {
-color: var(–green);
-text-decoration: underline;
-text-decoration-color: rgba(42,90,39,.35);
-text-underline-offset: 2px;
-transition: color .2s;
-}
-.how-to-buy a:hover { color: var(–gold); text-decoration-color: var(–gold); }
+  .how-to-buy a {
+    color: var(--green);
+    text-decoration: underline;
+    text-decoration-color: rgba(42,90,39,.35);
+    text-underline-offset: 2px;
+    transition: color .2s;
+  }
+  .how-to-buy a:hover { color: var(--gold); text-decoration-color: var(--gold); }
 
-.how-to-buy {
-background: var(–butter2);
-border-top: 1px solid rgba(184,134,11,.25);
-border-bottom: 1px solid rgba(184,134,11,.25);
-text-align: center;
-padding: 14px 24px;
-font-size: .72rem;
-letter-spacing: .16em;
-text-transform: uppercase;
-color: var(–green);
-line-height: 1.9;
-}
-.how-to-buy strong { color: var(–gold); font-weight: 600; }
+  .how-to-buy {
+    background: var(--butter2);
+    border-top: 1px solid rgba(184,134,11,.25);
+    border-bottom: 1px solid rgba(184,134,11,.25);
+    text-align: center;
+    padding: 14px 24px;
+    font-size: .72rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--green);
+    line-height: 1.9;
+  }
+  .how-to-buy strong { color: var(--gold); font-weight: 600; }
 
-.tab {
-font-family: ‘Montserrat’, sans-serif;
-font-size: .58rem;
-letter-spacing: .16em;
-text-transform: uppercase;
-padding: 7px 18px;
-border: 1px solid rgba(184,134,11,.45);
-background: transparent;
-color: var(–gold);
-cursor: pointer;
-border-radius: 1px;
-transition: all .2s;
-}
-.tab:hover  { background: rgba(184,134,11,.08); }
-.tab.active { background: var(–gold); color: var(–white); border-color: var(–gold); }
+  .tab {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .58rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border: 1px solid rgba(184,134,11,.45);
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all .2s;
+  }
+  .tab:hover  { background: rgba(184,134,11,.08); }
+  .tab.active { background: var(--gold); color: var(--white); border-color: var(--gold); }
 
-/* ─── SEARCH ──────────────────────────────────────────────────── */
-.search-wrap {
-max-width: 420px;
-margin: 18px auto 0;
-padding: 0 20px;
-position: relative;
-}
-.search-wrap input {
-width: 100%;
-padding: 10px 16px 10px 36px;
-background: rgba(255,255,255,.6);
-border: 1px solid rgba(42,90,39,.28);
-border-radius: 1px;
-font-family: ‘Montserrat’, sans-serif;
-font-size: .68rem;
-letter-spacing: .08em;
-color: var(–green);
-outline: none;
-transition: border-color .2s;
-}
-.search-wrap input:focus { border-color: var(–gold); }
-.search-wrap input::placeholder { color: var(–muted); opacity: .7; }
-.search-icon {
-position: absolute;
-left: 32px; top: 50%;
-transform: translateY(-50%);
-font-size: .8rem;
-color: var(–muted);
-pointer-events: none;
-}
+  /* ─── SEARCH ──────────────────────────────────────────────────── */
+  .search-wrap {
+    max-width: 420px;
+    margin: 18px auto 0;
+    padding: 0 20px;
+    position: relative;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 36px;
+    background: rgba(255,255,255,.6);
+    border: 1px solid rgba(42,90,39,.28);
+    border-radius: 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .68rem;
+    letter-spacing: .08em;
+    color: var(--green);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .search-wrap input:focus { border-color: var(--gold); }
+  .search-wrap input::placeholder { color: var(--muted); opacity: .7; }
+  .search-icon {
+    position: absolute;
+    left: 32px; top: 50%;
+    transform: translateY(-50%);
+    font-size: .8rem;
+    color: var(--muted);
+    pointer-events: none;
+  }
 
-/* ─── COUNT ───────────────────────────────────────────────────── */
-.item-count {
-text-align: center;
-font-size: .55rem;
-letter-spacing: .18em;
-text-transform: uppercase;
-color: var(–muted);
-padding: 14px 0 4px;
-}
+  /* ─── COUNT ───────────────────────────────────────────────────── */
+  .item-count {
+    text-align: center;
+    font-size: .55rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 0 4px;
+  }
 
-/* ─── TOP PICKS ──────────────────────────────────────────────── */
-.top-picks-section {
-background: linear-gradient(135deg, rgba(184,134,11,.07) 0%, rgba(254,251,230,.4) 100%);
-border: 1px solid rgba(184,134,11,.25);
-border-radius: 3px;
-padding: 20px 18px 24px;
-margin-bottom: 8px;
-}
-.top-picks-heading h2 {
-color: var(–gold) !important;
-font-size: 2.4rem !important;
-}
-.top-picks-sub {
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: .95rem;
-color: var(–muted);
-margin: -8px 0 16px;
-letter-spacing: .04em;
-}
-.top-picks-section .card {
-border-color: rgba(184,134,11,.3);
-background: rgba(255,255,255,.75);
-}
+  /* ─── TOP PICKS ──────────────────────────────────────────────── */
+  .top-picks-section {
+    background: linear-gradient(135deg, rgba(184,134,11,.07) 0%, rgba(254,251,230,.4) 100%);
+    border: 1px solid rgba(184,134,11,.25);
+    border-radius: 3px;
+    padding: 20px 18px 24px;
+    margin-bottom: 8px;
+  }
+  .top-picks-heading h2 {
+    color: var(--gold) !important;
+    font-size: 2.4rem !important;
+  }
+  .top-picks-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: .95rem;
+    color: var(--muted);
+    margin: -8px 0 16px;
+    letter-spacing: .04em;
+  }
+  .top-picks-section .card {
+    border-color: rgba(184,134,11,.3);
+    background: rgba(255,255,255,.75);
+  }
 
-/* ─── CATEGORY SECTIONS ───────────────────────────────────────── */
-.registry-body { max-width: 980px; margin: 0 auto; padding: 0 18px 60px; }
+  /* ─── CATEGORY SECTIONS ───────────────────────────────────────── */
+  .registry-body { max-width: 980px; margin: 0 auto; padding: 0 18px 60px; }
 
-.cat-section { margin-top: 36px; }
+  .cat-section { margin-top: 36px; }
 
-.cat-heading {
-display: flex;
-align-items: center;
-gap: 16px;
-margin-bottom: 16px;
-}
-.cat-heading h2 {
-font-family: ‘Great Vibes’, cursive;
-font-size: 2.1rem;
-color: var(–gold);
-white-space: nowrap;
-line-height: 1;
-}
-.cat-heading::after {
-content: ‘’;
-flex: 1;
-height: 1px;
-background: linear-gradient(to right, rgba(184,134,11,.35), transparent);
-}
+  .cat-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .cat-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.1rem;
+    color: var(--gold);
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .cat-heading::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(184,134,11,.35), transparent);
+  }
 
-/* ─── GRID ────────────────────────────────────────────────────── */
-.items-grid {
-display: grid;
-grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-gap: 14px;
-}
+  /* ─── GRID ────────────────────────────────────────────────────── */
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 14px;
+  }
 
-/* ─── CARD ────────────────────────────────────────────────────── */
-.card {
-background: rgba(255,255,255,.58);
-border: 1px solid rgba(184,134,11,.2);
-border-radius: 2px;
-overflow: hidden;
-display: flex;
-flex-direction: column;
-transition: transform .22s, box-shadow .22s;
-}
-.card:hover {
-transform: translateY(-4px);
-box-shadow: 0 10px 28px rgba(42,90,39,.1);
-}
+  /* ─── CARD ────────────────────────────────────────────────────── */
+  .card {
+    background: rgba(255,255,255,.58);
+    border: 1px solid rgba(184,134,11,.2);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .22s, box-shadow .22s;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(42,90,39,.1);
+  }
 
-.card-img {
-width: 100%;
-aspect-ratio: 1;
-overflow: hidden;
-background: #f5f0e0;
-position: relative;
-}
-.card-img img {
-width: 100%; height: 100%;
-object-fit: cover;
-transition: transform .35s;
-}
-.card:hover .card-img img { transform: scale(1.05); }
+  .card-img {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #f5f0e0;
+    position: relative;
+  }
+  .card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .35s;
+  }
+  .card:hover .card-img img { transform: scale(1.05); }
 
-.card-img .store-badge {
-position: absolute;
-top: 8px; left: 8px;
-font-size: .5rem;
-letter-spacing: .14em;
-text-transform: uppercase;
-background: rgba(254,251,230,.92);
-color: var(–gold);
-border: 1px solid rgba(184,134,11,.4);
-padding: 3px 7px;
-border-radius: 1px;
-font-family: ‘Montserrat’, sans-serif;
-}
+  .card-img .store-badge {
+    position: absolute;
+    top: 8px; left: 8px;
+    font-size: .5rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    background: rgba(254,251,230,.92);
+    color: var(--gold);
+    border: 1px solid rgba(184,134,11,.4);
+    padding: 3px 7px;
+    border-radius: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
 
-.card-body {
-padding: 12px 12px 10px;
-flex: 1;
-display: flex;
-flex-direction: column;
-}
-.card-name {
-font-family: ‘Cormorant Garamond’, serif;
-font-size: .95rem;
-color: var(–green);
-line-height: 1.35;
-flex: 1;
-margin-bottom: 8px;
-}
-.card-price {
-font-size: .72rem;
-font-weight: 600;
-letter-spacing: .06em;
-color: var(–green);
-margin-bottom: 4px;
-}
-.card-qty {
-font-size: .55rem;
-letter-spacing: .14em;
-text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 10px;
-}
-.btn-buy {
-display: block;
-text-align: center;
-font-family: ‘Montserrat’, sans-serif;
-font-size: .56rem;
-font-weight: 500;
-letter-spacing: .2em;
-text-transform: uppercase;
-color: var(–green);
-border: 1px solid rgba(42,90,39,.45);
-padding: 8px 10px;
-text-decoration: none;
-transition: all .2s;
-border-radius: 1px;
-}
-.btn-buy:hover {
-background: var(–green);
-color: var(–butter);
-border-color: var(–green);
-}
+  .card-body {
+    padding: 12px 12px 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .95rem;
+    color: var(--green);
+    line-height: 1.35;
+    flex: 1;
+    margin-bottom: 8px;
+  }
+  .card-price {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .card-qty {
+    font-size: .55rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .btn-buy {
+    display: block;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: .56rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(42,90,39,.45);
+    padding: 8px 10px;
+    text-decoration: none;
+    transition: all .2s;
+    border-radius: 1px;
+  }
+  .btn-buy:hover {
+    background: var(--green);
+    color: var(--butter);
+    border-color: var(--green);
+  }
 
-/* ─── NO RESULTS ──────────────────────────────────────────────── */
-.no-results {
-text-align: center;
-padding: 60px 24px;
-font-family: ‘Cormorant Garamond’, serif;
-font-style: italic;
-font-size: 1.1rem;
-color: var(–muted);
-}
+  /* ─── NO RESULTS ──────────────────────────────────────────────── */
+  .no-results {
+    text-align: center;
+    padding: 60px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--muted);
+  }
 
-/* ─── FOOTER ──────────────────────────────────────────────────── */
-.site-footer {
-text-align: center;
-padding: 32px 20px 48px;
-border-top: 1px solid rgba(184,134,11,.2);
-}
-.footer-mono {
-font-family: ‘Great Vibes’, cursive;
-font-size: 1.7rem;
-color: var(–gold);
-opacity: .75;
-}
-.footer-date {
-font-size: .52rem;
-letter-spacing: .22em;
-text-transform: uppercase;
-color: var(–muted);
-margin-top: 5px;
-}
+  /* ─── FOOTER ──────────────────────────────────────────────────── */
+  .site-footer {
+    text-align: center;
+    padding: 32px 20px 48px;
+    border-top: 1px solid rgba(184,134,11,.2);
+  }
+  .footer-mono {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    color: var(--gold);
+    opacity: .75;
+  }
+  .footer-date {
+    font-size: .52rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
 
-/* ─── RESPONSIVE ──────────────────────────────────────────────── */
-/* Placeholder for missing images */
-.card-img.img-missing {
-background: #f5f0e4;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.card-img.img-missing::after {
-content: ‘✦’;
-font-size: 1.8rem;
-color: rgba(184,134,11,.25);
-}
+  /* ─── RESPONSIVE ──────────────────────────────────────────────── */
+  /* Placeholder for missing images */
+  .card-img.img-missing {
+    background: #f5f0e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-img.img-missing::after {
+    content: '✦';
+    font-size: 1.8rem;
+    color: rgba(184,134,11,.25);
+  }
 
-@media (max-width: 520px) {
-.items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.cat-heading h2 { font-size: 1.7rem; }
-.couple-name { font-size: 2.6rem; }
-}
+  @media (max-width: 520px) {
+    .items-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cat-heading h2 { font-size: 1.7rem; }
+    .couple-name { font-size: 2.6rem; }
+  }
 
-.group-note strong { font-style: normal; color: var(–gold); }
+  .group-note {
+    max-width: 860px;
+    margin: 18px auto 0;
+    padding: 12px 24px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--green);
+    background: rgba(184,134,11,.06);
+    border: 1px solid rgba(184,134,11,.2);
+    border-radius: 2px;
+    line-height: 1.7;
+  }
+  .group-note strong { font-style: normal; color: var(--gold); }
 
-/* ─── FILTER SECTIONS ─────────────────────────────────────────── */
-.filter-section {
-max-width: 980px;
-margin: 0 auto;
-padding: 16px 20px 0;
-}
-.filter-label {
-font-size: .55rem;
-letter-spacing: .2em;
-text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 8px;
-display: block;
-}
-.tabs-row {
-display: flex;
-flex-wrap: wrap;
-gap: 7px;
-}
-.cat-tab {
-font-family: ‘Montserrat’, sans-serif;
-font-size: .56rem;
-letter-spacing: .14em;
-text-transform: uppercase;
-padding: 6px 14px;
-border: 1px solid rgba(42,90,39,.3);
-background: transparent;
-color: var(–green);
-cursor: pointer;
-border-radius: 1px;
-transition: all .2s;
-}
-.cat-tab:hover  { background: rgba(42,90,39,.08); }
-.cat-tab.active { background: var(–green); color: var(–butter); border-color: var(–green); }
+  /* ─── FILTER SECTIONS ─────────────────────────────────────────── */
+  .filter-section {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 16px 20px 0;
+  }
+  .filter-label {
+    font-size: .55rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .tabs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .cat-tab {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .56rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid rgba(42,90,39,.3);
+    background: transparent;
+    color: var(--green);
+    cursor: pointer;
+    border-radius: 1px;
+    transition: all .2s;
+  }
+  .cat-tab:hover  { background: rgba(42,90,39,.08); }
+  .cat-tab.active { background: var(--green); color: var(--butter); border-color: var(--green); }
 
-/* ─── SORT + SEARCH ROW ───────────────────────────────────────── */
-.sort-search-row {
-max-width: 980px;
-margin: 16px auto 0;
-padding: 0 20px;
-display: flex;
-gap: 16px;
-align-items: flex-end;
-flex-wrap: wrap;
-}
-.search-wrap { flex: 1; min-width: 200px; position: relative; }
-.sort-wrap { display: flex; flex-direction: column; gap: 4px; }
-.sort-wrap select {
-font-family: ‘Montserrat’, sans-serif;
-font-size: .65rem;
-letter-spacing: .08em;
-padding: 10px 14px;
-border: 1px solid rgba(42,90,39,.28);
-background: rgba(255,255,255,.6);
-color: var(–green);
-border-radius: 1px;
-outline: none;
-cursor: pointer;
-transition: border-color .2s;
-min-width: 180px;
-}
-.sort-wrap select:focus { border-color: var(–gold); }
+  /* ─── SORT + SEARCH ROW ───────────────────────────────────────── */
+  .sort-search-row {
+    max-width: 980px;
+    margin: 16px auto 0;
+    padding: 0 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+  .search-wrap { flex: 1; min-width: 200px; position: relative; }
+  .sort-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .sort-wrap select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: .65rem;
+    letter-spacing: .08em;
+    padding: 10px 14px;
+    border: 1px solid rgba(42,90,39,.28);
+    background: rgba(255,255,255,.6);
+    color: var(--green);
+    border-radius: 1px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color .2s;
+    min-width: 180px;
+  }
+  .sort-wrap select:focus { border-color: var(--gold); }
 
 </style>
 </head>
 <body>
 
 <!-- Header -->
-
 <header class="site-header">
   <div class="couple-name">Andy &amp; Ximena</div>
   <p class="header-detail">August 29, 2026 &nbsp;·&nbsp; St. Patrick's Cathedral &nbsp;·&nbsp; New York City</p>
@@ -462,19 +474,17 @@ min-width: 180px;
 </header>
 
 <!-- How to buy banner -->
-
 <div class="how-to-buy">
   Click any item to access the store's registry &nbsp;·&nbsp; Available at <a href="https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893" target="_blank" rel="noopener"><strong>Crate &amp; Barrel</strong></a>, <a href="https://www.scullyandscully.com/wedding-registry/ximenaandandy" target="_blank" rel="noopener"><strong>Scully &amp; Scully</strong></a>, <a href="https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872" target="_blank" rel="noopener"><strong>Bloomingdale's</strong></a> &amp; <a href="https://www.williams-sonoma.com/registry/b6sbqxkflt/registry-list.html" target="_blank" rel="noopener"><strong>Williams Sonoma</strong></a>
 </div>
 
-<!-- Group gift note -->
 
+<!-- Group gift note -->
 <div class="group-note">
   ✦ &nbsp; Higher-priced items from <strong>Crate &amp; Barrel</strong> can be contributed to by multiple guests
 </div>
 
 <!-- Store filter tabs -->
-
 <div class="filter-section">
   <p class="filter-label">Store</p>
   <div class="tabs-row" id="storeTabs">
@@ -487,9 +497,7 @@ min-width: 180px;
 </div>
 
 <!-- Sort + Search row -->
-
 <!-- Category filter -->
-
 <div class="filter-section">
   <p class="filter-label">Category</p>
   <div class="tabs-row" id="catTabs"></div>
@@ -514,11 +522,9 @@ min-width: 180px;
 <p class="item-count" id="count"></p>
 
 <!-- Registry content -->
-
 <div class="registry-body" id="registry"></div>
 
 <!-- Footer -->
-
 <footer class="site-footer">
   <div class="footer-mono">X &amp; A</div>
   <div class="footer-date">08 · 29 · 2026</div>
@@ -527,34 +533,34 @@ min-width: 180px;
 <script>
 // ── Item data (name, store, category, price, qty, url, img) ──────────────────
 const ITEMS = [
-  ["All-Clad D3 Stainless Steel 8-Quart Stock Pot with Lid","Bloomingdales","Kitchen",349.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/1198467_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",10,false],
-  ["All-Clad D3 Stainless Steel 10\" Fry Pan with Lid","Bloomingdales","Kitchen",139.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/8478123_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
-  ["All-Clad D3 Stainless Steel 3-Quart Saucepan with Lid","Bloomingdales","Kitchen",149.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/1198446_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
-  ["Miko Cool Mist Humidifier","Bloomingdales","Home",99.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/14641554_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
-  ["Matouk Regent Bath Towel Set","Bloomingdales","Home",240.0,2,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/12832819_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
-  ["All-Clad D3 Stainless Steel 1.5-Quart Sauce Pan with Lid","Bloomingdales","Kitchen",159.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/1198444_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
-  ["Zwilling Pro 7-Piece Knife Block Set","Bloomingdales","Table Top",369.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/10411688_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
-  ["Rabbit Electric Corkscrew","Bloomingdales","Kitchen",74.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/12123338_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
-  ["Le Creuset Oval Stoneware Fish Baker","Bloomingdales","Kitchen",135.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/15767517_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
-  ["Zadro Ultra Large Luxury Towel Warmer","Bloomingdales","Home",179.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10599274_fpx.tif?qlt=55,0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=webp&wid=684&hei=855",7,false],
-  ["Nambé Fruit Tree Bowl","Bloomingdales","Hosting",160.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/1270539_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
-  ["Breville \"Infusion\" One-Touch Tea Maker","Crate & Barrel","Kitchen",329.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/1101006_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
-  ["Le Creuset 3.5-Ounce Espresso Mug","Bloomingdales","Table Top",15.0,6,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/8864411_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["All-Clad D3 Stainless Steel 8-Quart Stock Pot with Lid","Bloomingdales","Kitchen",349.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/1198467_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",10,false],
+  ["All-Clad D3 Stainless Steel 10\" Fry Pan with Lid","Bloomingdales","Kitchen",139.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/8478123_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
+  ["All-Clad D3 Stainless Steel 3-Quart Saucepan with Lid","Bloomingdales","Kitchen",149.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/1198446_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
+  ["Miko Cool Mist Humidifier","Bloomingdales","Home",99.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/14641554_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
+  ["Matouk Regent Bath Towel Set","Bloomingdales","Home",240.0,2,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/12832819_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",9,false],
+  ["All-Clad D3 Stainless Steel 1.5-Quart Sauce Pan with Lid","Bloomingdales","Kitchen",159.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/1198444_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
+  ["Zwilling Pro 7-Piece Knife Block Set","Bloomingdales","Table Top",369.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/10411688_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
+  ["Rabbit Electric Corkscrew","Bloomingdales","Kitchen",74.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/12123338_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
+  ["Le Creuset Oval Stoneware Fish Baker","Bloomingdales","Kitchen",135.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/15767517_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",8,false],
+  ["Zadro Ultra Large Luxury Towel Warmer","Bloomingdales","Home",179.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/10599274_fpx.tif?qlt=55,0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=webp&wid=684&hei=855",7,false],
+  ["Nambé Fruit Tree Bowl","Bloomingdales","Hosting",160.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/1270539_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["Breville \"Infusion\" One-Touch Tea Maker","Bloomingdales","Kitchen",329.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/6/optimized/1101006_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["Le Creuset 3.5-Ounce Espresso Mug","Bloomingdales","Table Top",15.0,6,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/8864411_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
   ["Juliska Berry & Thread Melamine Dinner Plate, Set of 4","Bloomingdales","Table Top",125.0,3,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://slimages.macysassets.com/is/image/BLM/products/7/optimized/15556517_fpx.tif?qlt=85,0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=webp&wid=422&hei=528",7,false],
-  ["Nambé Harmony Salad Bowl Set","Bloomingdales","Hosting",107.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/0/optimized/10967480_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
-  ["Matouk Kiran Robe (His)","Bloomingdales","Home",178.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/11595169_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
-  ["Matouk Kiran Robe (Hers)","Bloomingdales","Home",178.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/10230629_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
-  ["All-Clad D3 Stainless Steel 3-Quart Sauté Pan with Lid","Bloomingdales","Kitchen",179.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/1198457_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["Juliska Berry & Thread 16\" Platter","Bloomingdales","Hosting",120.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/10185229_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["L'Objet Fortuny Orfeo Yellow Bowl","Bloomingdales","Home",385.0,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/15647788_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["Waterford Mixology Mixed Small Coupe, Set of 4","Bloomingdales","Table Top",352.0,3,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/11444523_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["NEST New York Bamboo Collection","Bloomingdales","Home",99.0,2,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/14553329_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["Shun Premier 8\" Chef's Knife","Bloomingdales","Table Top",219.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/8338272_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["Nambé Harmony Salad Bowl Set","Bloomingdales","Hosting",107.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/0/optimized/10967480_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["Matouk Kiran Robe (His)","Bloomingdales","Home",178.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/11595169_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["Matouk Kiran Robe (Hers)","Bloomingdales","Home",178.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/10230629_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",7,false],
+  ["All-Clad D3 Stainless Steel 3-Quart Sauté Pan with Lid","Bloomingdales","Kitchen",179.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/7/optimized/1198457_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["Juliska Berry & Thread 16\" Platter","Bloomingdales","Hosting",120.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/10185229_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["L'Objet Fortuny Orfeo Yellow Bowl","Bloomingdales","Home",385.0,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/8/optimized/15647788_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["Waterford Mixology Mixed Small Coupe, Set of 4","Bloomingdales","Table Top",352.0,3,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/11444523_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["NEST New York Bamboo Collection","Bloomingdales","Home",99.0,2,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/9/optimized/14553329_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["Shun Premier 8\" Chef's Knife","Bloomingdales","Table Top",219.95,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/8338272_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
   ["Juliska Cabana Stripe Napkin, Set of 4","Bloomingdales","Home",125.0,3,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://slimages.macysassets.com/is/image/BLM/products/4/optimized/14302354_fpx.tif?qlt=85,0&resMode=sharp2&op_usm=1.75,0.3,2,0&fmt=webp&wid=302&hei=378",6,false],
-  ["Hestan OvenBond 3-Piece Tri-ply Clad Stainless Ovenware Set","Bloomingdales","Kitchen",199.96,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/14509714_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
-  ["Staub Pie Dish","Bloomingdales","Kitchen",49.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/8414915_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",5,false],
-  ["Cuisinart Brushed Stainless Steel Griddler","Bloomingdales","Kitchen",129.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/13923_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",4,false],
-  ["OXO Stainless Steel Meat Tenderizer","Bloomingdales","Kitchen",24.99,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/912174_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",3,false],
+  ["Hestan OvenBond 3-Piece Tri-ply Clad Stainless Ovenware Set","Bloomingdales","Kitchen",199.96,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/14509714_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",6,false],
+  ["Staub Pie Dish","Bloomingdales","Kitchen",49.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/5/optimized/8414915_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",5,false],
+  ["Cuisinart Brushed Stainless Steel Griddler","Bloomingdales","Kitchen",129.95,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/13923_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",4,false],
+  ["OXO Stainless Steel Meat Tenderizer","Bloomingdales","Kitchen",24.99,1,"https://www.bloomingdales.com/registry/Ximena-Tellez-Andy-Johnson/1342872","https://images.bloomingdalesassets.com/is/image/BLM/products/4/optimized/912174_fpx.tif?op_sharpen=1&wid=1500&fit=fit%2C1&fmt=webp",3,false],
   ["KitchenAid Artisan Series 5-Quart Tilt-Head Stand Mixer","Crate & Barrel","Kitchen",399.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/KitchenAdArtStdMxJlpSSS24_VND?$web_pdp_main_carousel_high$",10,true],
   ["Breville Barista Touch Brushed Stainless Steel Espresso Machine with Steam Wand","Crate & Barrel","Kitchen",799.95,1,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/BrevilleBaristaTchSSS21_VND?$web_pdp_main_carousel_med$",10,true],
   ["Schott Zwiesel Tour 15-Oz. White Wine Glass","Crate & Barrel","Hosting",13.56,12,"https://www.crateandbarrel.com/gift-registry/ximena-tellez-and-andy-johnson/r7511893","https://cb.scene7.com/is/image/Crate/TourWhiteWine15ozSSS22/$web_gr_list_desktop$/240201123539/tour-white-wine-glass.jpg",9,false],
@@ -741,6 +747,5 @@ function cardHTML([name, store, cat, price, qty, url, img, score]) {
 buildCatTabs();
 render();
 </script>
-
 </body>
 </html>
