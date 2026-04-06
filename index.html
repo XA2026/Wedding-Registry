@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andy & Ximena — Wedding Registry</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YJ1CQ2X0M4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YJ1CQ2X0M4');
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -642,12 +650,14 @@ function setStore(btn, store) {
   document.querySelectorAll('#storeTabs .tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   activeStore = store;
+  gtag('event', 'filter_store', { store_name: store });
   render();
 }
 function setCat(btn, cat) {
   document.querySelectorAll('#catTabs .cat-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   activeCat = cat;
+  gtag('event', 'filter_category', { category_name: cat });
   render();
 }
 function buildCatTabs() {
@@ -660,6 +670,7 @@ function buildCatTabs() {
 
 function setSort(val) {
   activeSort = val;
+  gtag('event', 'sort_change', { sort_type: val });
   render();
 }
 document.getElementById('search').addEventListener('input', e => {
@@ -728,7 +739,7 @@ function cardHTML([name, store, cat, price, qty, url, img, score]) {
       <p class="card-name">${name}</p>
       <p class="card-price">$${price.toFixed(2)}</p>
       <p class="card-qty">Qty requested: ${qty}</p>
-      <a class="btn-buy" href="${url}" target="_blank" rel="noopener noreferrer">Access Registry &rarr;</a>
+      <a class="btn-buy" href="${url}" target="_blank" rel="noopener noreferrer" onclick="gtag('event','registry_click',{item_name:name,store_name:store,item_category:cat,item_price:price})">Access Registry &rarr;</a>
     </div>
   </div>`;
 }
